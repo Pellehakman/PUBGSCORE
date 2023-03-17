@@ -1,5 +1,3 @@
-import PlayerName from '@/components/HandleAccount/PlayerName/PlayerName';
-
 <script src="./GoPro" lang="ts"></script>
 
 <template>
@@ -11,10 +9,9 @@ import PlayerName from '@/components/HandleAccount/PlayerName/PlayerName';
     <!-- {{ playerData?.id }} -->
 
     <p class="text-m font-open">
-      In this applicatiodn you can build your team and compare it against the
-      top teams.<br />
-      Is your squad ready to go pro? You can also see detailed general
-      statistics of every season you played.
+      In this applicatiodn you can build your team and compare it against the top teams.<br />
+      Is your squad ready to go pro? You can also see detailed general statistics of every season
+      you played.
     </p>
     <div class="flex mt-6">
       <PlayerName @onError="handleError" class="flex w-full rounded-r-none" />

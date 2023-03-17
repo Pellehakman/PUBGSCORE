@@ -34,14 +34,6 @@ const router = createRouter({
       //   needsAuth: true,
       // },
       component: Teams
-    },
-    {
-      path: '/account',
-      name: 'account',
-      // meta: {
-      //   needsAuth: true,
-      // },
-      component: Account
     }
   ]
 })

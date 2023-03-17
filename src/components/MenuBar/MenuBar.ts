@@ -1,67 +1,63 @@
-import { getAuth } from "firebase/auth";
-import { defineComponent, ref } from "vue";
-import logo from "../../assets/logo.svg";
-import Login from "../LandingSlides/Login/Login.vue";
-import Signup from "../LandingSlides/Signup/Signup.vue";
+import { getAuth } from 'firebase/auth'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-  name: "menu-component",
-  components: { Login, Signup },
+  name: 'menu-component',
 
   setup() {
-    const auth = getAuth();
-    document.addEventListener("mousedown", function (event: any) {
-      if (!event.target.closest("#modal-popup")) {
-        popup.value = false;
+    const auth = getAuth()
+    document.addEventListener('mousedown', function (event: any) {
+      if (!event.target.closest('#modal-popup')) {
+        popup.value = false
       }
-    });
+    })
 
-    document.addEventListener("mousedown", function (event: any) {
-      if (!event.target.closest("#account-popup")) {
-        dropdownParent.value = false;
+    document.addEventListener('mousedown', function (event: any) {
+      if (!event.target.closest('#account-popup')) {
+        dropdownParent.value = false
       }
-    });
+    })
 
-    const toggleMenu = ref(false);
+    const toggleMenu = ref(false)
     const handleMenu = () => {
-      toggleMenu.value = !toggleMenu.value;
-    };
-    window.addEventListener("resize", () => {
+      toggleMenu.value = !toggleMenu.value
+    }
+    window.addEventListener('resize', () => {
       if (window.innerWidth > 640) {
-        toggleMenu.value = false;
+        toggleMenu.value = false
       }
-    });
+    })
 
-    const signin = ref(false);
-    const signup = ref(false);
+    const signin = ref(false)
+    const signup = ref(false)
 
     const handleModal = () => {
-      popup.value = false;
-      signin.value = false;
-      signup.value = false;
-    };
+      popup.value = false
+      signin.value = false
+      signup.value = false
+    }
 
-    const popup = ref(false);
+    const popup = ref(false)
     const handlePopup = () => {
-      popup.value = !popup.value;
-      dropdownParent.value = false;
-      signin.value = true;
-      signup.value = false;
-    };
+      popup.value = !popup.value
+      dropdownParent.value = false
+      signin.value = true
+      signup.value = false
+    }
 
     const handleEnterSignup = () => {
-      signin.value = false;
-      signup.value = true;
-    };
-    const dropdownParent = ref(false);
+      signin.value = false
+      signup.value = true
+    }
+    const dropdownParent = ref(false)
     const handleDropdownParent = () => {
-      dropdownParent.value = !dropdownParent.value;
-    };
+      dropdownParent.value = !dropdownParent.value
+    }
     const handleLogout = async () => {
-      await auth.signOut();
-      location.reload();
-      window.sessionStorage.clear();
-    };
+      await auth.signOut()
+      location.reload()
+      window.sessionStorage.clear()
+    }
     return {
       handleLogout,
       handleDropdownParent,
@@ -74,7 +70,7 @@ export default defineComponent({
       handleEnterSignup,
       logo,
       toggleMenu,
-      handleMenu,
-    };
-  },
-});
+      handleMenu
+    }
+  }
+})

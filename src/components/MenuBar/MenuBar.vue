@@ -11,11 +11,7 @@
 
     <div class="menu-container">
       <nav class="menu-nav">
-        <div
-          ref="menuContainer"
-          :class="{ activeMenu: toggleMenu }"
-          class="menu-nav-container"
-        >
+        <div ref="menuContainer" :class="{ activeMenu: toggleMenu }" class="menu-nav-container">
           <div class="menu-item-container">
             <div class="menu-logo-container">
               <img id="logo" class="menu-logo" :src="logo" alt="" />
@@ -34,7 +30,7 @@
             </Router-link>
           </div>
 
-          <div id="account-popup" class="menu-dropdown-container">
+          <!-- <div id="account-popup" class="menu-dropdown-container">
             <button
               @click="handleDropdownParent"
               class="menu-item menu-item-size justify-center sm-max:justify-start overflow-hidden z-50"
@@ -48,32 +44,19 @@
             <Transition name="dropdownTransition">
               <div class="menu-dropdown-content" v-if="dropdownParent">
                 <div class="flex flex-col w-full">
-                  <button
-                    @click="handlePopup"
-                    class="menu-dropdown-item justify-between"
-                    to="#"
-                  >
+                  <button @click="handlePopup" class="menu-dropdown-item justify-between" to="#">
                     <div>
-                      <font-awesome-icon
-                        class="pr-4"
-                        icon="fa-solid fa-right-from-bracket"
-                      />
+                      <font-awesome-icon class="pr-4" icon="fa-solid fa-right-from-bracket" />
                       <span class="font-bold">LOGIN</span>
                     </div>
                   </button>
                 </div>
 
                 <Router-link class="menu-dropdown-item" to="/account">
-                  <font-awesome-icon
-                    class="pr-4 icon-sm text-white"
-                    icon="fa-solid fa-user-gear"
-                  />
+                  <font-awesome-icon class="pr-4 icon-sm text-white" icon="fa-solid fa-user-gear" />
                   <span class="font-bold">ACCOUNT</span>
                 </Router-link>
-                <button
-                  @click="handleLogout"
-                  class="menu-dropdown-item btn--danger font-bold"
-                >
+                <button @click="handleLogout" class="menu-dropdown-item btn--danger font-bold">
                   <font-awesome-icon
                     class="pl-4 rotate-180 icon-sm text-white"
                     icon="fa-solid fa-right-from-bracket"
@@ -82,21 +65,17 @@
                 </button>
               </div>
             </Transition>
-          </div>
+          </div> -->
         </div>
       </nav>
     </div>
   </header>
-  <Transition id="modal-popup" name="login-modal">
+  <!-- <Transition id="modal-popup" name="login-modal">
     <div class="fixed bg-background modal-design" v-if="popup">
-      <Login
-        v-if="signin"
-        @onEnterSignup="handleEnterSignup"
-        @onCancelLogin="handleModal"
-      />
+      <Login v-if="signin" @onEnterSignup="handleEnterSignup" @onCancelLogin="handleModal" />
       <Signup v-if="signup" @onCancelSignup="handleModal" />
     </div>
-  </Transition>
+  </Transition> -->
 </template>
 
 <style>
