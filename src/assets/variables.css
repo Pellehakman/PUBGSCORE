@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500&display=swap');
+
+:root{
+    --primary: #0F0D15;
+    --background: #e6e6e6;
+    --secondary: rgb(11, 99, 150);
+    --borderColor: rgb(0, 0, 0);
+    --input: #1e1e1ec1;
+    --monestral: #09080c;
+
+    --primary-500: #1eadff;
+    --primary-600: #068fff;
+    --primary-700: #007bff;
+    
+    --success-500: #138e76;
+    --success-600: #157866;
+    --success-700: #155a4f;
+
+    --warning-600: #cab902;
+    --warning-700: #a38805;
+    --warning-800: #866a0d;
+
+    --danger-600: #bc4246;
+    --danger-700: #9d3339;
+    --danger-800: #842d35;
+
+    --black: #0e0e0e;
+    --white: #ffffff;
+    --gray: #606060;
+    
+    --text-primary: rgb(255, 255, 255);
+    --text-secondary: rgb(0, 0, 0);
+    --bg-menu-secondary: #1f1f1f;
+    --bg-menu-primary: #141414;
+    
+    --ff-bebas: 'Bebas Neue', sans-serif;
+    --ff-open : 'Open Sans', sans-serif;
+  }
+
+
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }

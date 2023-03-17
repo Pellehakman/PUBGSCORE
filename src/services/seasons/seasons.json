@@ -1,0 +1,246 @@
+{
+  "alltimeTypes": [
+    {
+      "alltimeType": "ALLTIME",
+      "id": "alltime"
+    },
+    {
+      "alltimeType": "SEASON",
+      "id": "season"
+    }
+  ],
+  "gamemode": [
+    {
+      "gamemode": "SQUAD",
+      "id": "squad"
+    },
+    {
+      "gamemode": "DUO",
+      "id": "duo"
+    },
+    {
+      "gamemode": "SOLO",
+      "id": "solo"
+    }
+  ],
+  "gamemodeType": [
+    {
+      "gamemodeType": "FPP",
+      "id": "-fpp"
+    },
+    {
+      "gamemodeType": "TPP",
+      "id": "-tpp"
+    }
+  ],
+  "gametype": [
+    {
+      "gametype": "NORMAL",
+      "id": "normal"
+    },
+    {
+      "gametype": "RANKED",
+      "id": "ranked"
+    }
+  ],
+  "season": [
+    {
+      "name": "SEASON 22",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-22",
+      "attributes": {
+        "isCurrentSeason": true,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 21",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-21",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 20",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-20",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 19",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-19",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 18",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-18",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 17",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-17",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 16",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-16",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 15",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-15",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 14",
+      "type": "SEASON",
+      "id": "division.bro.official.pc-2018-14",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 13",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-13",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 12",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-12",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 11",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-11",
+      "attributes": {
+        "isOffseason": false,
+        "isCurrentSeason": false
+      }
+    },
+    {
+      "name": "SEASON 10",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-10",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 9",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-09",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 8",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-08",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 7",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-07",
+      "attributes": {
+        "isOffseason": false,
+        "isCurrentSeason": false
+      }
+    },
+    {
+      "name": "SEASON 6",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-06",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 5",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-05",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 4",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-04",
+      "attributes": {
+        "isOffseason": false,
+        "isCurrentSeason": false
+      }
+    },
+    {
+      "name": "SEASON 3",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-03",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 2",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-02",
+      "attributes": {
+        "isCurrentSeason": false,
+        "isOffseason": false
+      }
+    },
+    {
+      "name": "SEASON 1",
+      "type": "season",
+      "id": "division.bro.official.pc-2018-01",
+      "attributes": {
+        "isOffseason": false,
+        "isCurrentSeason": false
+      }
+    }
+  ]
+}

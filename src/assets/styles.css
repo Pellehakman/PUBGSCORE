@@ -1,0 +1,255 @@
+@import './variables.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text-secondary);
+  -webkit-box-shadow: 0 0 0px 1000px #00000000 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+html {
+  overflow-y:scroll;
+}
+.gradient{
+  background: rgb(249,248,241);
+  background: linear-gradient(114deg, rgb(235, 233, 217) 0%, rgb(179, 175, 192) 100%);
+}
+
+@layer base {
+  body{
+    @apply w-full
+  }
+  #app {
+    @apply min-h-screen w-full flex flex-col gradient
+    /* bg-pubg bg-center bg-fixed bg-cover  */
+    font-open 
+  }
+}
+
+@layer components {
+.center{
+  @apply flex justify-center items-center
+}
+.heading-styling {
+  @apply py-2 px-4 bg-slate-900 flex items-center;
+}
+  .heading-bebas-xl{
+    @apply  /* --------------------- */
+    /* full */ text-8xl
+    /* tablet */ lg-max:text-6xl
+    /* mobile */ sm-max:text-4xl
+    /* design */ font-bebas text-textSecondary ;
+  }
+
+  .heading-bebas-lg{
+    @apply  /* --------------------- */
+    /* full */ text-5xl
+    /* tablet */ lg-max:text-3xl
+    /* mobile */ sm-max:text-2xl
+    /* design */ font-bebas text-textSecondary ;
+  }
+
+  .heading-bebas-sm{
+    @apply  /* --------------------- */
+    /* full */ text-3xl
+    /* tablet */ lg-max:text-2xl
+    /* mobile */ sm-max:text-xl
+    /* design */ font-bebas text-textPrimary ;
+  }
+  .landing-search-btn {
+    @apply /* --------------------- */
+    /* full */ px-16
+    /* tablet */ lg-max:px-8
+    /* mobile */ sm-max:px-2 
+    /* design */ btn--success bebas-sm flex center text-white rounded-r-sm;
+  }
+  /* GENERAL STYLING START */
+ 
+  .btn-sm{
+    @apply px-2 py-2
+  }
+  .btn--lg{
+    @apply 
+    /* all */ px-10 py-3
+     /* mobile */ sm-max:px-6 sm-max:text-xs
+  }
+  .btn-xl{
+    @apply px-12
+  }
+
+  .btn--primary{
+    @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700
+  }
+  .btn--inactive{
+    @apply bg-stone-600
+  }
+  .btn--secondary{
+    @apply bg-success-500 hover:bg-success-600 active:bg-success-700
+  }
+  .btn--success{
+    @apply bg-success-500 hover:bg-success-600 active:bg-success-700
+  }
+  .btn--warning{
+    @apply bg-warning-600 hover:bg-warning-700 active:bg-warning-800
+  }
+  .btn--danger{
+    @apply bg-danger-600 hover:bg-danger-700 active:bg-danger-800
+  }
+  .btn--outline{
+    @apply  rounded-sm border-2 border-white
+  }
+  .btn--link{
+    @apply bg-success-500 hover:bg-success-600 active:bg-success-700
+  }
+  .icon-sm{
+    @apply  text-black h-4 w-5 cursor-pointer
+  }
+  .icon-pen{
+    @apply text-black h-3 w-3 cursor-pointer
+  }
+  .icon-md{
+    @apply  h-6 w-6 cursor-pointer
+  }
+  .btn-icon--r {
+    @apply pl-2 ;
+  }
+  .btn-icon--l {
+    @apply pr-2 ;
+  }
+  .btn-default{
+    @apply 
+    /*  full  */ px-8 py-2 text-xl
+    /* laptop */ lg-max:px-6
+    /* tablet */ md-max:px-3 md-max:text-base
+    /* mobile */ sm-max:py-4 sm-max:px-8 sm-max:text-base
+    /* design */ font-bold
+  }
+
+  .btn{
+    @apply 
+    /* design */ rounded-sm text-white transition-all center flex;
+  }
+
+  
+.width-max{
+  @apply max-w-7xl w-full mx-auto
+}
+
+
+
+
+/* STANDARD INPUT STYLING START */
+.input-container{
+  @apply relative shadow-lg
+}
+.input-field{
+  @apply 
+  /* full */ pt-6 pb-3 pl-5 
+  /* tablet */
+  /* mobile */
+  /* design */ flex text-sm w-full rounded-sm appearance-none focus:outline-none focus:ring-0 text-textSecondary 
+}
+.input-label{
+  @apply absolute text-base font-semibold text-textSecondary duration-150 transform -translate-y-0 peer-focus:-translate-y-0 scale-75 z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2  peer-focus:scale-75  left-4 top-0 peer-focus:top-0
+}
+.input-icon-container{
+  @apply flex w-6 h-6 justify-center items-center absolute top-0 right-4 bottom-0 my-auto 
+}
+.input-icon{
+  @apply px-8 h-full absolute right-0 top-1/2 transform -translate-y-1/2 flex justify-center items-center
+}
+.input-icon-sm{
+  @apply px-2 h-full absolute right-0 top-1/2 transform -translate-y-1/2 flex justify-center items-center
+}
+/* STANDARD INPUT STYLING END */
+
+
+
+
+
+/* STANDARD FORM STYLING START */
+.form-container{
+  @apply gap-2 flex flex-col mt-6
+}
+.form-warning{
+  @apply flex justify-end
+}
+.form-btn-container{
+  @apply flex justify-end pt-8
+}
+
+/* STANDARD FORM STYLING END */
+
+
+/* PADDING RULES START */
+.padding-2{
+  @apply p-2
+}
+.input-field-container {
+  @apply flex flex-col gap-4 h-32;
+}
+/* PADDING RULES END */
+
+
+
+
+
+  /* GENERAL STYLING END */
+
+
+
+
+
+  /* CUSTOM STYLING START */
+  .main-bg-linear{
+    background: linear-gradient(140deg, rgb(43, 21, 20) 0%, rgb(37, 35, 44)100%);
+  }
+  *{
+    box-sizing: border-box;
+  }
+  .active-menu{
+    background-color: var(--bg-menu-secondary)
+  
+    /* color: white; */
+
+
+  /* box-shadow: 0 10px 0px -1px #222; */
+  }
+  .triangle {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(
+      to bottom right,
+      #ffffff00 0%,
+      #ffffff00 50%,
+      rgb(255, 255, 255) 50%,
+      rgb(255, 255, 255) 100%
+    );
+  }
+  /* CUSTOM STYLING END */
+}
+
+
+
+
+/* full */ 
+/* tablet */ 
+/* mobile */
+/* design */ 
+
+.NAME {
+  @apply /* --------------------- */
+  /*  full  */ px-16 py-3
+  /* laptop */ lg-max:px-8
+  /* tablet */ md-max:px-2 
+  /* mobile */ sm-max:w-full
+  /* design */ ;
+}
