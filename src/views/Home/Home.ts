@@ -1,5 +1,5 @@
 import AppFooter from '@/components/AppFooter/AppFooter.vue'
-import GoPro from '@/components/GoPro/GoPro'
+import GoPro from '@/components/GoPro/GoPro.vue'
 
 import { defineComponent } from 'vue'
 

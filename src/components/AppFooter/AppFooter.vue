@@ -21,16 +21,9 @@
         </section>
       </div>
       <div class="footer-brand-container">
-        <img
-          id="logo"
-          class="footer-logo opacity-50 py-5"
-          :src="logo"
-          alt="brand logo"
-        />
+        <img id="logo" class="footer-logo opacity-50 py-5" :src="logo" alt="brand logo" />
         <figure class="w-full border-t border-stone-300 mt-2 mx-2"></figure>
-        <p class="text-sm my-2">
-          © 2022 PBGSCORE is based on data from PUBG Offical API.
-        </p>
+        <p class="text-sm my-2">© 2022 PBGSCORE is based on data from PUBG Offical API.</p>
       </div>
     </div>
   </footer>
@@ -48,10 +41,6 @@
 
 .footer-gradient {
   background: rgb(249, 248, 241);
-  background: linear-gradient(
-    114deg,
-    rgb(241, 241, 241) 0%,
-    rgb(238, 238, 238) 100%
-  );
+  background: linear-gradient(114deg, rgb(241, 241, 241) 0%, rgb(238, 238, 238) 100%);
 }
 </style>
