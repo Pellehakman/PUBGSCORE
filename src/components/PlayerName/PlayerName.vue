@@ -27,15 +27,12 @@
         id="playerName"
         class="input-field peer"
         :class="{
-          '': props.editStyle === true,
+          '': props.editStyle === true
         }"
         placeholder=" "
       />
       <label for="playerName" class="input-label">PUBG Playername</label>
-      <button
-        @click.prevent="handlePlayerName()"
-        class="input-icon bg-success-500 rounded-r-sm"
-      >
+      <button @click.prevent="handlePlayerName()" class="input-icon bg-success-500 rounded-r-sm">
         <font-awesome-icon
           v-if="loading"
           class="peer animate-spin text-white icon-md"
