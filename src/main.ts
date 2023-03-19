@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { initializeApp } from 'firebase/app'
 import { firebaseConfig } from './firebase/config'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import App from './App.vue'
 import router from './router'
 import './assets/styles.css'
@@ -54,6 +55,9 @@ library.add(
 // initializeApp(firebaseConfig);
 const app = createApp(App).component('font-awesome-icon', FontAwesomeIcon)
 initializeApp(firebaseConfig)
-app.use(createPinia())
+const pinia = createPinia()
+
+app.use(pinia.use(piniaPluginPersistedstate))
+
 app.use(router)
 app.mount('#app')

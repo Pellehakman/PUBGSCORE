@@ -1,21 +1,25 @@
-import type { userModel } from '@/models/models'
+import type { playerModel } from '@/models/models'
 import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    userObject: [] as unknown as userModel
+    user: [] as unknown as playerModel,
+    normal: [] as unknown as any,
+    ranked: [] as unknown as any
   }),
-
-  getters: {
-    UserObject(state) {
-      return state.userObject
-    }
-  },
+  persist: true,
 
   actions: {
-    addUser(user: userModel) {
-      this.userObject = user
-      console.log(user)
+    addUser(user: playerModel) {
+      this.user = user
+    },
+    addNormalLifetime(normal: any) {
+      this.normal = normal
+      // console.log(normal)
+    },
+    addRankedLifetime(ranked: any) {
+      this.ranked = ranked
+      // console.log(ranked)
     }
   }
 })

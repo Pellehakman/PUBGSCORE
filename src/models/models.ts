@@ -1,13 +1,16 @@
 export type playerModel = {
   attributes: {
-    name?: any
+    name?: string
+    shardID?: string
   }
-  id?: any
+  id: string
   links?: any
   relationships?: {
-    assets?: any
     matches?: {
-      data?: any
+      data?: {
+        id?: string
+        type?: string
+      }
     }
   }
 }

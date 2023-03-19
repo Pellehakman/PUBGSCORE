@@ -1,7 +1,10 @@
+import { useUserStore } from '@/stores/userStore'
+
 class Seasons {
-  normal: any
-  ranked: any
+  // normal: any
+  // ranked: any
   async GetSeasonsStats(ign_id: string) {
+    const userStore: any = useUserStore()
     const ign_id_url = `players/${ign_id}/`
     const seasonId = 'division.bro.official.pc-2018-22'
     const season_id_url = `seasons/${seasonId}`
@@ -16,9 +19,7 @@ class Seasons {
       .then((response) => response.json())
       .then(async (response) => {
         console.log('NORMAL GAME MODE FETCH')
-        this.normal = await response.data.attributes.gameModeStats
-
-        sessionStorage.setItem('_user_season_stats_normal', JSON.stringify(this.normal))
+        userStore.addNormalLifetime(response.data.attributes.gameModeStats)
       })
       .catch((error: any) => {
         console.log(error)
@@ -34,8 +35,7 @@ class Seasons {
       .then((response) => response.json())
       .then(async (response) => {
         console.log('RANKED GAME MODE FETCH')
-        this.ranked = await response.data.attributes.rankedGameModeStats
-        sessionStorage.setItem('_user_season_stats_ranked', JSON.stringify(this.ranked))
+        userStore.addRankedLifetime(response.data.attributes.rankedGameModeStats)
       })
   }
 }

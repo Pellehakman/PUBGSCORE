@@ -19,6 +19,8 @@
     "nanoid": "^4.0.1",
     "node-cache": "^5.1.2",
     "pinia": "^2.0.33",
+    "pinia-cached-store": "^0.6.4",
+    "pinia-plugin-persistedstate": "^3.1.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },

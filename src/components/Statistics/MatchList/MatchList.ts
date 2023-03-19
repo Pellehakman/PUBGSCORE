@@ -1,46 +1,29 @@
-import Online from '@/components/Helpers/Online/stuff'
-import PlayerName from '@/components/PlayerName/PlayerName'
+import type { userModel } from '@/models/models'
 import $matchlist from '@/services/statistics/matchlist'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { defineComponent, onBeforeMount, onMounted, reactive, ref } from 'vue'
+import { useUserStore } from '@/stores/userStore'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'PlayerStats',
-  components: { Online },
+  components: {},
   async setup() {
-    const auth = getAuth()
+    // const userStore = useUserStore()
     const loading = ref(false)
     const matchlist = ref()
     const matchlistError = ref('')
+    // const datas: userModel = userStore.user
 
-    const getPlayerNameFromAuth = () => {
-      onAuthStateChanged(auth, async (user: any) => {
-        const data = JSON.parse(sessionStorage.getItem(user.uid) || '')
-        console.log(data)
-        // handleMatches(JSON.parse(JSON.stringify(data.pubgname)))
-      })
-    }
-
-    const handleMatches = async (data: any) => {
-      console.log(data)
+    const handleMatches = async () => {
       loading.value = true
-      await $matchlist.GetMatchlist(data)
+      // await $matchlist.GetMatchlist(datas.pubgname)
       loading.value = false
       nextStep()
     }
     const nextStep = async () => {
-      if (!auth.currentUser) {
-        matchlistError.value = 'please enter user to see matches'
-      }
-      if (sessionStorage.getItem('_matches')) {
-        matchlist.value = sessionStorage.getItem('_matches')
-        matchlistError.value = ''
-      } else {
-        matchlist.value = $matchlist.state
-      }
+      matchlist.value = $matchlist.state
     }
+    handleMatches()
 
-    getPlayerNameFromAuth()
     return {
       loading,
       matchlist,

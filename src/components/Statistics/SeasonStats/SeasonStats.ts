@@ -1,84 +1,61 @@
 import $seasons from '@/services/seasons/seasons'
-import type { seasonStats } from '@/models/models'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { defineComponent, onMounted, ref } from 'vue'
-import { doSomething } from '@/helpers/stuff'
+
+import { defineComponent, ref } from 'vue'
+import { useUserStore } from '@/stores/userStore'
+import { useChangeStore } from '@/stores/changeStore'
+import { nanoid } from 'nanoid'
+import { useCache } from '@/stores/cacheStore'
 
 export default defineComponent({
   name: 'SeasonStats',
   setup() {
-    onMounted(() => {
-      console.log(doSomething)
-    })
-    const normal = ref()
-    const ranked = ref()
-    const seasonData = ref()
     const seasonStats = ref()
-
-    const auth = getAuth()
+    const userStore = useUserStore()
+    const useChange = useChangeStore()
     const loading = ref(false)
-    const playerName = ref<any | undefined>('LOADING...')
+    const playerName = ref<any | undefined>('NO PLAYER')
 
-    const getPlayerNameFromAuth = () => {
-      onAuthStateChanged(auth, async (user) => {
-        console.log(user)
-        if (user === null) {
-          playerName.value = 'NO PLAYER'
-        } else {
-          const ign_id: any = user?.displayName
-          playerName.value = user?.photoURL
-          // handleMatches(ign_id)
-        }
-      })
-    }
     const update = ref(false)
-    const handleUpdate = () => {
+    const handleUpdate = async () => {
       update.value = true
-      getPlayerNameFromAuth()
+      handleMatches()
     }
+    // const cache = useCache()
+    // const toPinia = () => {
+    //   const id = nanoid()
+    //   const name = 'ffe'
+    //   cache.isCache(id, name)
 
-    const handleMatches = async (ign_id: string) => {
+    //   console.log(JSON.parse(JSON.stringify(cache.$state)))
+    // }
+
+    const handleMatches = async () => {
       loading.value = true
+      if (JSON.parse(JSON.stringify(useChange.change)) === true) {
+        await $seasons.GetSeasonsStats(userStore.user.id)
+        useChange.isChange(false)
+      }
       if (update.value === true) {
-        await $seasons.GetSeasonsStats(ign_id)
+        await $seasons.GetSeasonsStats(userStore.user.id)
       }
-      if (sessionStorage.getItem('_user_season_stats_normal')) {
-        // console.log("no req");
+      if (userStore.normal) {
+        console.log('there is data in store')
       } else {
-        await $seasons.GetSeasonsStats(ign_id)
+        await $seasons.GetSeasonsStats(userStore.user.id)
         loading.value = false
-      }
-
-      nextStep()
-    }
-    const nextStep = async () => {
-      loading.value = true
-      if (!auth.currentUser) {
-        seasonStats.value = 'please enter user to see matches'
-      }
-      if (sessionStorage.getItem('_user_season_stats_normal')) {
-        normal.value = sessionStorage.getItem('_user_season_stats_normal')
-      }
-      if (sessionStorage.getItem('_user_season_stats_ranked')) {
-        ranked.value = sessionStorage.getItem('_user_season_stats_ranked')
-      } else {
-        normal.value = await $seasons.normal
-        ranked.value = await $seasons.normal
       }
       calculateStats()
       loading.value = false
     }
+    const seasonData = ref()
     const calculateStats = () => {
-      const normalData: seasonStats = JSON.parse(normal.value)
-      const rankedData: seasonStats = JSON.parse(ranked.value)
-
-      const normalSoloFPP = Object.entries(normalData['solo-fpp'])
-      const normalDuoFPP = Object.entries(normalData['duo-fpp'])
-      const normalSquadFPP = Object.entries(normalData['squad-fpp'])
-      const normalSoloTPP = Object.entries(normalData['solo'])
-      const normalDuoTPP = Object.entries(normalData['duo'])
-      const normalSquadTPP = Object.entries(normalData['squad'])
-      const rankedSquadFPP = Object.entries(rankedData['squad-fpp'])
+      const normalSoloFPP = Object.entries(userStore.normal['solo-fpp'])
+      const normalDuoFPP = Object.entries(userStore.normal['duo-fpp'])
+      const normalSquadFPP = Object.entries(userStore.normal['squad-fpp'])
+      const normalSoloTPP = Object.entries(userStore.normal['solo'])
+      const normalDuoTPP = Object.entries(userStore.normal['duo'])
+      const normalSquadTPP = Object.entries(userStore.normal['squad'])
+      const rankedSquadFPP = Object.entries(userStore.ranked['squad-fpp'])
 
       const seasonStatsCollection = [
         ...normalSoloFPP,
@@ -89,35 +66,36 @@ export default defineComponent({
         ...normalSquadTPP,
         ...rankedSquadFPP
       ]
+
       const wins = seasonStatsCollection
         .filter((name) => name.includes('wins'))
         .map((f) => f[1])
-        .reduce((a, b) => a + b, 0)
+        .reduce((a: any, b: any) => a + b, 0)
 
       const kills = seasonStatsCollection
         .filter((name) => name.includes('kills'))
         .map((f) => f[1])
-        .reduce((a, b) => a + b, 0)
+        .reduce((a: any, b: any) => a + b, 0)
 
       const assists = seasonStatsCollection
         .filter((name) => name.includes('assists'))
         .map((f) => f[1])
-        .reduce((a, b) => a + b, 0)
+        .reduce((a: any, b: any) => a + b, 0)
 
-      const damageDealt = seasonStatsCollection
+      const damageDealt: any = seasonStatsCollection
         .filter((name) => name.includes('damageDealt'))
         .map((f) => f[1])
-        .reduce((a, b) => a + b, 0)
+        .reduce((a: any, b: any) => a + b, 0)
 
       const roundsPlayed = seasonStatsCollection
         .filter((name) => name.includes('roundsPlayed'))
         .map((f) => f[1])
-        .reduce((a, b) => a + b, 0)
+        .reduce((a: any, b: any) => a + b, 0)
 
       const losses = seasonStatsCollection
         .filter((name) => name.includes('losses'))
         .map((f) => f[1])
-        .reduce((a, b) => a + b, 0)
+        .reduce((a: any, b: any) => a + b, 0)
 
       const data = {
         wins: wins,
@@ -131,14 +109,14 @@ export default defineComponent({
       seasonData.value = data
     }
 
-    getPlayerNameFromAuth()
+    handleMatches()
     return {
-      doSomething,
+      // toPinia,
       handleUpdate,
       playerName,
-      normal,
+
       seasonData,
-      getPlayerNameFromAuth,
+      // getPlayerNameFromAuth,
       loading,
       seasonStats
     }
