@@ -1,5 +1,5 @@
 import PlayerName from '@/components/PlayerName/PlayerName.vue'
-import $fireAccount from '@/services/account/fireAccount'
+
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
@@ -16,12 +16,12 @@ export default defineComponent({
       console.log('search')
     }
 
-    const handleGuest = () => {
-      $fireAccount.LoginGuest()
-    }
+    // const handleGuest = () => {
+    //   $fireAccount.LoginGuest()
+    // }
 
     return {
-      handleGuest,
+      // handleGuest,
       pubgError,
       handleSerach,
       handleError

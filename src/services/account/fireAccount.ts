@@ -1,137 +1,84 @@
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-  updateEmail,
-  updatePassword,
-  signInAnonymously,
-} from "firebase/auth";
-import router from "@/router";
-import { nanoid } from "nanoid";
-import { setDoc, doc, getFirestore, updateDoc } from "firebase/firestore";
-const db = getFirestore();
-const auth: any = getAuth();
+import { getAuth, signInAnonymously } from 'firebase/auth'
+import type { playerModel } from '@/models/models'
+import { setDoc, doc, getFirestore, updateDoc, getDoc } from 'firebase/firestore'
+
+const db = getFirestore()
+const auth: any = getAuth()
+const firestore = getFirestore()
+
 class FireAccount {
-  error: string | undefined;
+  error: string | undefined
+  user: any | undefined
 
+  get User() {
+    return this.user
+  }
   get Error() {
-    return this.error;
+    return this.error
   }
 
-  async Guest(fetchPlayer: string) {
-    await setDoc(doc(db, "users", auth.currentUser.uid), {
-      uid: auth.currentUser.uid,
-      pubgid: fetchPlayer,
-      pubgname: fetchPlayer,
-      teams: {},
-      favourites: {},
-    });
-  }
-
-  async RegisterSubmit(email: string, password: string, $apiAccount: any) {
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential.user);
-      })
-      .then(async () => {
-        await updateProfile(auth.currentUser, {
-          displayName: $apiAccount.FetchPlayer.data[0].id,
-          photoURL: $apiAccount.FetchPlayer.data[0].attributes.name,
-        });
-        await setDoc(doc(db, "users", auth.currentUser.uid), {
-          uid: auth.currentUser.uid,
-          pubgid: $apiAccount.FetchPlayer.data[0].id,
-          pubgname: $apiAccount.FetchPlayer.data[0].attributes.name,
-          teams: {},
-          favourites: {},
-        });
-        router.push("/statistics");
-        this.error = "";
-        console.log(auth.currentUser);
-        window.location.reload();
-      })
-
-      .catch((error) => {
-        console.log(error);
-        this.error = error;
-      });
-  }
-  async LoginGuest() {
-    const auth = getAuth();
+  //this function is triggered by GetPlayer from apiAccount.ts
+  async LoginGuest(fetchPlayer: playerModel) {
     signInAnonymously(auth)
       .then(() => {
-        router.push("/statistics");
-      })
-      .catch((error) => {});
-  }
-
-  async LoginSubmit(password: string, email: string) {
-    await signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        if (user) {
-          this.error = "";
-          router.push("/statistics");
-          window.location.reload();
+        if (sessionStorage.getItem(auth.currentUser.uid)) {
+          this.UpdateGuest(fetchPlayer)
+        } else {
+          this.Guest(fetchPlayer)
         }
-        // return user;
       })
-
       .catch((error) => {
-        this.error = error;
-      });
-  }
-
-  async UpdateEmail(email: string) {
-    if (email === auth.currentUser.email) {
-      console.log("EMAIL: Nothing to update!");
-    } else {
-      console.log("EMAIL: Email updated!");
-      await updateEmail(auth.currentUser, email)
-        .then(() => {})
-        .catch(async (error) => {
-          this.error = await error;
-        });
-    }
-  }
-
-  async UpdatePlayerName($apiAccount: any) {
-    if ($apiAccount.FetchPlayer === undefined) {
-      console.log("PLAYERNAME: Nothing to update!");
-    } else {
-      console.log("PLAYERNAME: Playername updated!");
-      await updateProfile(auth.currentUser, {
-        displayName: await $apiAccount.FetchPlayer.data[0].id,
-        photoURL: await $apiAccount.FetchPlayer.data[0].attributes.name,
+        console.log(error)
       })
-        .then(async () => {
-          const firestore = getFirestore();
-          const updatePlayerNameRef = doc(
-            firestore,
-            "users",
-            auth.currentUser.uid
-          );
-          await updateDoc(updatePlayerNameRef, {
-            pubgname: $apiAccount.FetchPlayer.data[0].attributes.name,
-          });
-        })
-        .catch((error) => {});
-    }
   }
 
-  async UpdatePassword(password: string) {
-    if (password.length > 0) {
-      updatePassword(auth.currentUser, password)
-        .then(() => {
-          console.log("PASSWORD: Password updated!");
-        })
-        .catch((error) => {});
+  //this function is triggered above
+  async Guest(fetchPlayer: playerModel) {
+    console.log('SET firebase')
+    await setDoc(doc(db, 'users', auth.currentUser.uid), {
+      uid: auth.currentUser.uid,
+      pubgid: fetchPlayer.id,
+      pubgname: fetchPlayer.attributes.name
+    })
+    const user = {
+      uid: auth.currentUser.uid,
+      pubgid: fetchPlayer.id,
+      pubgname: fetchPlayer.attributes.name
+    }
+    sessionStorage.setItem(auth.currentUser.uid, JSON.stringify(user))
+  }
+
+  async UpdateGuest(fetchPlayer: playerModel) {
+    console.log('UPDATE firebase')
+    const updatePlayerNameRef = doc(firestore, 'users', auth.currentUser.uid)
+    await updateDoc(updatePlayerNameRef, {
+      uid: auth.currentUser.uid,
+      pubgid: fetchPlayer.id,
+      pubgname: fetchPlayer.attributes.name
+    })
+    const user = {
+      uid: auth.currentUser.uid,
+      pubgid: fetchPlayer.id,
+      pubgname: fetchPlayer.attributes.name
+    }
+    sessionStorage.setItem(auth.currentUser.uid, JSON.stringify(user))
+  }
+
+  async getUser() {
+    console.log('hora')
+    const firestore = getFirestore()
+    const docRef = doc(firestore, 'users', `${auth?.currentUser?.uid}`)
+    const docSnap = await getDoc(docRef)
+
+    if (docSnap.exists()) {
+      this.user = docSnap.data()
+      console.log(docSnap)
     } else {
-      console.log("PASSWORD: Nothing to update!");
+      // doc.data() will be undefined in this case
+      console.log('No such document!')
     }
   }
 }
 
-const $fireAccount = new FireAccount();
-export default $fireAccount;
+const $fireAccount = new FireAccount()
+export default $fireAccount

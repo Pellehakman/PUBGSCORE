@@ -15,9 +15,7 @@
       </aside>
 
       <section class="flex flex-col w-full">
-        <h2 class="heading-styling heading-bebas-sm sm-max:hidden">
-          STATISTICS
-        </h2>
+        <h2 class="heading-styling heading-bebas-sm sm-max:hidden">STATISTICS</h2>
         <OptionBar />
         <PlayerStats />
       </section>

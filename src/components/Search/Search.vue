@@ -1,4 +1,4 @@
-<script src="./GoPro" lang="ts"></script>
+<script src="./Search" lang="ts"></script>
 
 <template>
   <div>
@@ -6,7 +6,6 @@
       IS YOUR SQUAD <br />
       READY TO GO PRO?
     </h1>
-    <!-- {{ playerData?.id }} -->
 
     <p class="text-m font-open">
       In this applicatiodn you can build your team and compare it against the top teams.<br />
@@ -20,9 +19,9 @@
       <span class="text-white">{{ pubgError }}</span>
     </div>
 
-    <button class="flex justify-end text-white pt-8" @click="handleGuest">
+    <!-- <button class="flex justify-end text-white pt-8" @click="handleGuest">
       continue without signing in
-    </button>
+    </button> -->
   </div>
 </template>
 <style></style>

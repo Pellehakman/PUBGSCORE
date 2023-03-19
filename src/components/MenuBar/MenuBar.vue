@@ -11,13 +11,13 @@
 
     <div class="menu-container">
       <nav class="menu-nav">
-        <div class="menu-nav-container">
+        <div ref="menuContainer" :class="{ activeMenu: toggleMenu }" class="menu-nav-container">
           <div class="menu-item-container">
             <div class="menu-logo-container">
               <img id="logo" class="menu-logo" :src="logo" alt="" />
             </div>
 
-            <Router-link to="/home" class="menu-item menu-item-size">
+            <Router-link to="/" class="menu-item menu-item-size">
               <span class="menu-heading">HOME</span>
             </Router-link>
 
@@ -37,7 +37,17 @@
 
 <style>
 /* HEADER START */
+.dropdownTransition-leave-to,
+.dropdownTransition-enter-from {
+  transform: translateY(-100%);
 
+  opacity: 0;
+}
+
+.dropdownTransition-enter-active,
+.dropdownTransition-leave-active {
+  transition: all 0.1s ease-in-out;
+}
 .header-container {
   @apply /* --------------------- */
   /* full */ px-4 mb-10 w-full shadow-sm
@@ -97,5 +107,23 @@
   /* full */  text-white
   /* laptop */ lg-max:text-2xl
   /* design */ text-3xl;
+}
+
+.logo-container {
+  @apply /* --------------------- */
+  /* tablet */ lg-max:w-24
+  /* mobile */ md-max:hidden sm-max:hidden
+  /* design */ relative w-32;
+}
+
+.logo {
+  @apply /* --------------------- */
+  /* full */ h-40 p-4
+  /* mobile */ sm-max:hidden
+  /* design */ absolute -top-1 z-20 left-0 text-white;
+}
+
+.activeMenu {
+  @apply flex absolute w-full;
 }
 </style>
