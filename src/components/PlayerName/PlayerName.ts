@@ -1,4 +1,4 @@
-import $apiAccount from '@/services/account/apiAccount'
+import $pubgINIT from '@/services/account/pubgINIT'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
@@ -18,7 +18,7 @@ export default defineComponent({
         error.value = 'Please search for player'
         console.log(error.value)
       } else {
-        await $apiAccount.GetPlayer(playerName.value)
+        await $pubgINIT.GetPlayer(playerName.value)
         ifDisable.value = true
       }
 

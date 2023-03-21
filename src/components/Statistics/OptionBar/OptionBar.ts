@@ -5,6 +5,8 @@ import $lifetime from '@/services/statistics/lifetime'
 import { getAuth } from 'firebase/auth'
 import type { Options } from '@/models/Options'
 
+import $seasons from '@/services/seasons/seasons'
+
 export default defineComponent({
   name: 'OptionBar',
   setup() {
@@ -32,10 +34,13 @@ export default defineComponent({
 
     const isSeason = ref('division.bro.official.pc-2018-22')
     const onSeason = (event: any) => {
+      $seasons.season(event)
       isSeason.value = event.target.value
     }
 
     const handleOptionForm = () => {
+      $seasons.GetSeasonsStats()
+
       if (isGamemodeType.value === '-tpp') {
         isGamemodeType.value = ''
       }
@@ -47,8 +52,8 @@ export default defineComponent({
         alltimeType: isAlltime.value,
         season: isSeason.value
       }
-      console.log(form)
-      $lifetime.GetLifetime(form)
+      // console.log(form)
+      // $lifetime.GetLifetime(form)
     }
 
     return {

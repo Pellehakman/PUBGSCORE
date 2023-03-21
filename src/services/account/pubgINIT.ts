@@ -4,8 +4,10 @@ import { useUserStore } from '@/stores/userStore'
 import router from '@/router'
 import $fireAccount from './fireAccount'
 import { useCache } from '@/stores/cacheStore'
+import $lifetime from '../statistics/lifetime'
+import $matches from '../statistics/matches'
 
-class ApiAccount {
+class PubgINIT {
   fetchPlayer: playerModel | undefined | any
   error: string | undefined
   change: boolean | undefined
@@ -33,19 +35,30 @@ class ApiAccount {
       .then((response) => response.json())
       .then(async (response) => {
         if (response.errors) {
-          console.log('ERROR: service:apiAccount.ts', response.errors)
+          console.log('ERROR: service:pubgINIT.ts', response.errors)
           this.error = await response.errors[0].detail
         } else {
-          // userStore.addUser(response.data[0])
-          cache.letsCache(response.data[0])
+          console.log(response)
+          const data = {
+            id: response.data[0].id,
+            name: response.data[0].attributes.name,
+            matches: response.data[0].relationships.matches.data,
+            lifetime: [],
+            lastPlayedWith: [],
+            seasons: []
+          }
+          cache.letsCache(data)
           changeStore.isChange(true)
-          router.push('/statistics')
+          // router.push('/statistics')
 
-          this.fetchPlayer = await response.data[0]
           this.error = ''
-          $fireAccount.LoginGuest(this.fetchPlayer)
-          // console.log('LoginGuest triggered from $apiAccount service')
         }
+      })
+      .then(() => {
+        $lifetime.GetLifetime()
+      })
+      .then(() => {
+        $matches.GetMatches()
       })
       .catch((err) => {
         console.log(err)
@@ -53,5 +66,5 @@ class ApiAccount {
   }
 }
 
-const $apiAccount = new ApiAccount()
-export default $apiAccount
+const $pubgINIT = new PubgINIT()
+export default $pubgINIT

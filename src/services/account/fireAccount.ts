@@ -17,7 +17,7 @@ class FireAccount {
     return this.error
   }
 
-  //this function is triggered by GetPlayer from apiAccount.ts
+  //this function is triggered by GetPlayer from pubgINIT.ts
   async LoginGuest(fetchPlayer: playerModel) {
     signInAnonymously(auth)
       .then(() => {

@@ -1,9 +1,9 @@
-import type { Options } from '@/models/Options'
+import { useCache } from '@/stores/cacheStore'
 
 class Lifetime {
-  state: any
-  async GetLifetime(form: Options) {
-    const lifetime_url = `players/${form.playerID}/seasons/lifetime`
+  async GetLifetime() {
+    const cache = useCache()
+    const lifetime_url = `players/${cache.$state.cacheList.at(0).id}/seasons/lifetime`
 
     await fetch(`${import.meta.env.VITE_API_URL}${lifetime_url}`, {
       method: 'GET',
@@ -14,8 +14,12 @@ class Lifetime {
     })
       .then((response) => response.json())
       .then(async (response) => {
-        this.state = await response
-        console.log(this.state)
+        const data = {
+          id: response.data.relationships.player.data.id,
+          bestRankPoint: response.data.attributes.bestRankPoint,
+          gameModeStats: response.data.attributes.gameModeStats
+        }
+        cache.letsCacheLifetime(data)
       })
   }
 }
