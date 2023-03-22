@@ -43,34 +43,13 @@ export const useCache = defineStore('idfddddes', {
       }
     },
     letsCacheSeasons(data: any) {
-      const run = (id: any) => {
-        console.log(id)
-        for (let i = 0; i < this.$state.cacheList.length; i++) {
-          if (this.$state.cacheList[i].seasons[0] === id) {
-            console.log('there is data with same id')
-          } else {
-            console.log('lets go')
-            this.cacheList.find((f: any) => f.id === data.id).seasons.push({ ...data })
-          }
-        }
+      const newArr = JSON.parse(JSON.stringify(this.$state.cacheList)).map((f) => f.seasons)
+      if (newArr.find((arr: any) => arr.some((obj: any) => obj.seasonId === data.seasonId))) {
+        console.log('data with same id')
+      } else {
+        console.log('nope, lets add')
+        this.cacheList.find((f: any) => f.id === data.id).seasons.push({ ...data })
       }
-      run(data.seasonId)
-
-      // if (
-      //   JSON.parse(JSON.stringify(this.$state.cacheList)).find((f: any) => f.id === data.id) &&
-      //   JSON.parse(JSON.stringify(this.$state.cacheList)).find((f: any) => f.seasons.length === 0)
-      // ) {
-      //   this.cacheList.find((f: any) => f.id === data.id).seasons.push({ ...data })
-      // } else {
-      //   for (let i = 0; i < this.$state.cacheList.length; i++) {
-      //     if (this.$state.cacheList[i].seasons[0].seasonId === data.seasonId) {
-      //       console.log('there is data with same id')
-      //     } else {
-      //       console.log('lets go')
-      //       this.cacheList.find((f: any) => f.id === data.id).seasons.push({ ...data })
-      //     }
-      //   }
-      // }
     }
   }
 })
