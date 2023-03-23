@@ -12,25 +12,27 @@
   "gamemode": [
     {
       "gamemode": "SQUAD",
-      "id": "squad"
+      "id": "squad-fpp"
     },
     {
       "gamemode": "DUO",
-      "id": "duo"
+      "id": "duo-fpp"
     },
     {
       "gamemode": "SOLO",
-      "id": "solo"
-    }
-  ],
-  "gamemodeType": [
-    {
-      "gamemodeType": "FPP",
-      "id": "-fpp"
+      "id": "solo-fpp"
     },
     {
-      "gamemodeType": "TPP",
-      "id": "-tpp"
+      "gamemode": "SQUAD TPP",
+      "id": "squad"
+    },
+    {
+      "gamemode": "DUO TPP",
+      "id": "duo"
+    },
+    {
+      "gamemode": "SOLO TPP",
+      "id": "solo"
     }
   ],
   "gametype": [

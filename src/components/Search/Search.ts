@@ -1,5 +1,4 @@
 import PlayerName from '@/components/PlayerName/PlayerName.vue'
-import $matches from '@/services/statistics/matches'
 import { useCache } from '@/stores/cacheStore'
 
 import { defineComponent, ref } from 'vue'
@@ -9,7 +8,7 @@ export default defineComponent({
   components: { PlayerName },
   setup() {
     const cache = useCache()
-    
+    // cache.$reset()
     const pubgError = ref('')
 
     const handleError = (fromError: string) => {

@@ -3,9 +3,9 @@
 <template>
   <div class="stats-container">
     <Player />
+    <!-- <Player />
     <Player />
-    <Player />
-    <Player />
+    <Player /> -->
   </div>
 </template>
 

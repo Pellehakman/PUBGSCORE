@@ -9,7 +9,6 @@ class Seasons {
 
   season(event: any) {
     this.seasonId.value = event.target.value
-    console.log(this.seasonId.value)
   }
   async GetSeasonsStats() {
     const cache = useCache()

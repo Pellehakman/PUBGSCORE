@@ -38,7 +38,11 @@
                 class="peer animate-spin text-white icon-md"
                 icon="fa-solid fa-spinner"
               /> -->
-            <font-awesome-icon class="peer icon-sm bg-white" icon="fa-solid fa-magnifying-glass" />
+            <font-awesome-icon
+              @click="filterData"
+              class="peer icon-sm bg-white"
+              icon="fa-solid fa-magnifying-glass"
+            />
           </button>
         </div>
         <div class="px-2 pt-4 pb-2 flex flex-col">
@@ -50,9 +54,7 @@
         </div>
       </div>
     </Transition>
-    <div class="flex flex-col">
-      {{ data }}
-    </div>
+    <div class="flex flex-col"></div>
   </article>
 </template>
 

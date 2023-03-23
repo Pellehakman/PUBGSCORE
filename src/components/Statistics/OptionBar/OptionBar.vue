@@ -8,36 +8,23 @@
       </option>
     </select>
 
-    <select @change="onGamemodeType" class="option-bar">
-      <option v-for="f in data.gamemodeType" :key="f.id" :value="f.id">
-        {{ f.gamemodeType }}
+    <select @change="onGametype" class="option-bar">
+      <option v-for="f in data.gametype" :key="f.gametype" :value="f.id">
+        {{ f.gametype }}
       </option>
     </select>
-
+    <select @change="onSeason" class="option-bar">
+      <option v-for="f in data.season" :key="f.id" :value="f.id">
+        {{ f.name }}
+      </option>
+    </select>
     <select @change="onAlltimeType" class="option-bar">
       <option v-for="f in data.alltimeTypes" :key="f.alltimeType" :value="f.id">
         {{ f.alltimeType }}
       </option>
     </select>
 
-    <select @change="onGametype" class="option-bar">
-      <option v-for="f in data.gametype" :key="f.gametype" :value="f.id">
-        {{ f.gametype }}
-      </option>
-    </select>
-
-    <select @change="onSeason" class="option-bar">
-      <option v-for="f in data.season" :key="f.id" :value="f.id">
-        {{ f.name }}
-      </option>
-    </select>
-
-    <button
-      @click.prevent="handleOptionForm"
-      class="btn btn-default btn--success"
-    >
-      UPDATE
-    </button>
+    <button @click.prevent="handleOptionForm" class="btn btn-default btn--success">UPDATE</button>
   </form>
 </template>
 <!-- <div v-for="(date, index) in calenderData" :key="`dag_${index}`">

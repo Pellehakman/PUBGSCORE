@@ -21,7 +21,7 @@ export type userModel = {
   pubgname: string
 }
 
-export type seasonStats = {
+export type cacheStatistics = {
   duo: {
     assists: number
     boosts: number
