@@ -1,4 +1,5 @@
 import { useCache } from '@/stores/cacheStore'
+import { useOptions } from '@/stores/options'
 import { useUserStore } from '@/stores/userStore'
 import { ref } from 'vue'
 
@@ -12,8 +13,10 @@ class Seasons {
   }
   async GetSeasonsStats() {
     const cache = useCache()
+    const options = useOptions()
 
     const ign_id_url = `players/${cache.$state.cacheList.at(0).id}/`
+    console.log(JSON.parse(JSON.stringify(options.$state.options)).season)
 
     const season_id_url = `seasons/${this.seasonId.value}`
 

@@ -1,8 +1,6 @@
-import { defineComponent, ref } from 'vue'
+import { defineComponent, onMounted, reactive, ref, toRefs, watch } from 'vue'
 import triangle from '@/assets/triangle.svg'
 import seasonOptions from '@/services/seasons/seasons.json'
-import type { Options } from '@/models/Options'
-import $seasons from '@/services/seasons/seasons'
 import { useOptions } from '@/stores/options'
 
 export default defineComponent({
@@ -10,46 +8,38 @@ export default defineComponent({
   setup() {
     const data = seasonOptions
     const options = useOptions()
+    const isAlltime = ref(true)
 
-    const isGametype = ref('normal')
-    const onGametype = (event: any) => {
-      isGametype.value = event.target.value
-    }
+    const optionForm = reactive({
+      gamemode: JSON.parse(JSON.stringify(options.$state.options)).gamemode || data.gamemode[0].id,
+      gametype: JSON.parse(JSON.stringify(options.$state.options)).gametype || data.gametype[0].id,
+      season: JSON.parse(JSON.stringify(options.$state.options)).season || data.season[0].id,
+      alltimeType:
+        JSON.parse(JSON.stringify(options.$state.options)).alltimeType || data.alltimeTypes[0].id
+    })
 
-    const isAlltime = ref('alltime')
-    const onAlltimeType = (event: any) => {
-      isAlltime.value = event.target.value
-    }
+    onMounted(() => {
+      isAlltime.value = optionForm.alltimeType == 'alltime'
+    })
 
-    const isGamemode = ref('squad-fpp')
-    const onGameMode = (event: any) => {
-      isGamemode.value = event.target.value
-    }
-
-    const isSeason = ref('division.bro.official.pc-2018-22')
-    const onSeason = (event: any) => {
-      $seasons.season(event)
-      isSeason.value = event.target.value
-    }
+    watch(
+      () => optionForm.alltimeType,
+      (alltimeType) => {
+        isAlltime.value = alltimeType == 'alltime'
+      }
+    )
 
     const handleOptionForm = () => {
-      const form: Options = {
-        gamemode: isGamemode.value,
-        gametype: isGametype.value,
-        alltimeType: isAlltime.value,
-        season: isSeason.value
-      }
-      options.storeOptions(form)
+      options.storeOptions(optionForm)
     }
 
     return {
+      ...toRefs(optionForm),
       triangle,
       data,
-      handleOptionForm,
-      onSeason,
-      onGametype,
-      onAlltimeType,
-      onGameMode
+      isAlltime,
+      optionForm,
+      handleOptionForm
     }
   }
 })

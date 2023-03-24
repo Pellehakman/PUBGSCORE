@@ -1,15 +1,19 @@
-import $pubgINIT from '@/services/account/pubgINIT'
+import $getPlayer from '@/services/account/getPlayer'
+import $seasons from '@/services/seasons/seasons'
 
 import { useCache } from '@/stores/cacheStore'
 import { useOptions } from '@/stores/options'
-import { defineComponent, ref } from 'vue'
+import { usePlayers } from '@/stores/playerStore'
+import { defineComponent, onMounted, ref } from 'vue'
 
 export default defineComponent({
   name: 'Player',
   setup() {
     const options = useOptions()
     const cache = useCache()
-
+    const players = usePlayers()
+    const playerName = ref()
+    const playerSearch = ref('')
     document.addEventListener('mousedown', function (event: any) {
       if (!event.target.closest('#playerSearchDropdown')) {
         playerDropdown.value = false
@@ -19,39 +23,48 @@ export default defineComponent({
     const handlePlayerDropdown = () => {
       playerDropdown.value = !playerDropdown.value
     }
-    const playerSearch = ref('')
-    const findPlayer = () => {
+
+    const handleHistoryName = (date: any) => {
+      playerName.value = date.name
+      playerSearch.value = date.name
+    }
+
+    const handleData = async (data: any) => {
+      console.log(JSON.parse(JSON.stringify(options.$state.options)))
+      console.log(data)
+    }
+
+
+    // search for player
+    // if player === cache.player
+    // get all data
+    // listen to options (golbal)
+    // loop data matching options
+
+    const getPlayer = () => {
       if (
         JSON.parse(JSON.stringify(cache.$state.cacheList)).find(
           (f: any) => f.name === playerSearch.value
         )
       ) {
-        return JSON.parse(JSON.stringify(cache.$state.cacheList)).find(
+        const data = JSON.parse(JSON.stringify(cache.$state.cacheList)).filter(
           (f: any) => f.name === playerSearch.value
         )
+        handleData(data)
+        console.log('yes')
       } else {
-        return $pubgINIT.GetPlayer(playerSearch.value)
+        console.log('no')
       }
     }
 
-    // division.bro.official.pc-2018-22
-    const findSeason = (player: any) => {
-      const season = player.seasons.filter(async (f: any) => {
-        if (f.seasonId === 'division.bro.official.pc-2018-22') {
-          return f
-        }
-      })
-      return season
+    return {
+      handlePlayerDropdown,
+      playerDropdown,
+      playerSearch,
+      playerName,
+      getPlayer,
+      players,
+      handleHistoryName
     }
-
-    const filterData = async () => {
-      const player = await findPlayer()
-      const season = await findSeason(player)
-      console.log(await JSON.parse(JSON.stringify(cache.$state.cacheList)))
-
-      console.log(season)
-    }
-
-    return { handlePlayerDropdown, playerDropdown, playerSearch, filterData }
   }
 })

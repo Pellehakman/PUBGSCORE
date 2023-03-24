@@ -2,23 +2,24 @@
 
 <template>
   <form class="option-bar-container">
-    <select @change="onGameMode" class="option-bar">
+    <select v-model="optionForm.gamemode" class="option-bar">
       <option v-for="f in data.gamemode" :key="f.id" :value="f.id">
         {{ f.gamemode }}
       </option>
     </select>
 
-    <select @change="onGametype" class="option-bar">
+    <select v-model="optionForm.gametype" class="option-bar">
       <option v-for="f in data.gametype" :key="f.gametype" :value="f.id">
         {{ f.gametype }}
       </option>
     </select>
-    <select @change="onSeason" class="option-bar">
+    <select :disabled="isAlltime" v-model="optionForm.season" class="option-bar">
       <option v-for="f in data.season" :key="f.id" :value="f.id">
         {{ f.name }}
       </option>
     </select>
-    <select @change="onAlltimeType" class="option-bar">
+
+    <select v-model="optionForm.alltimeType" class="option-bar">
       <option v-for="f in data.alltimeTypes" :key="f.alltimeType" :value="f.id">
         {{ f.alltimeType }}
       </option>
@@ -38,7 +39,7 @@
 
 <style>
 .option-bar {
-  @apply w-full flex justify-center;
+  @apply w-full flex justify-center font-bold;
 }
 .option-bar-container {
   @apply /* --------------------- */

@@ -3,8 +3,9 @@ import { useChangeStore } from '@/stores/changeStore'
 import { useCache } from '@/stores/cacheStore'
 import $lifetime from '../statistics/lifetime'
 import $matches from '../statistics/matches'
+import $getPlayers from './getPlayers'
 
-class PubgINIT {
+class GetPlayer {
   fetchPlayer: playerModel | undefined | any
   error: string | undefined
   change: boolean | undefined
@@ -38,7 +39,7 @@ class PubgINIT {
         .then((response) => response.json())
         .then(async (response) => {
           if (response.errors) {
-            console.log('ERROR: service:pubgINIT.ts', response.errors)
+            console.log('ERROR: service:getPlayer.ts', response.errors)
             this.error = await response.errors[0].detail
           } else {
             console.log(response)
@@ -51,9 +52,10 @@ class PubgINIT {
               seasons: []
             }
             cache.letsCache(data)
-            changeStore.isChange(true)
-            await $lifetime.GetLifetime()
+            // changeStore.isChange(true)
+            // await $lifetime.GetLifetime()
             await $matches.GetMatches()
+            await $getPlayers.GetPlayers()
 
             this.error = ''
           }
@@ -66,5 +68,5 @@ class PubgINIT {
   }
 }
 
-const $pubgINIT = new PubgINIT()
-export default $pubgINIT
+const $getPlayer = new GetPlayer()
+export default $getPlayer

@@ -20,6 +20,7 @@ export default defineComponent({
 
   setup() {
     const cache = useCache()
+    console.log(JSON.parse(JSON.stringify(cache.$state.cacheList)))
 
     return {}
   }

@@ -1,4 +1,4 @@
-import $pubgINIT from '@/services/account/pubgINIT'
+import $getPlayer from '@/services/account/getPlayer'
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
@@ -18,7 +18,7 @@ export default defineComponent({
         error.value = 'Please search for player'
         console.log(error.value)
       } else {
-        await $pubgINIT.GetPlayer(playerName.value)
+        await $getPlayer.GetPlayer(playerName.value)
         ifDisable.value = true
       }
 

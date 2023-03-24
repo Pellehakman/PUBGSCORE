@@ -47,14 +47,14 @@ class Matches {
           return a.concat(b, c, d)
         }
 
-        const lastPlayedWith = getPlayedWith().map((f: any) => f.attributes.stats.name)
+        const lastPlayedWith = getPlayedWith().map((f: any) => f.attributes.stats.playerId)
 
         const data = {
           name: cache.$state.cacheList.at(0).name,
           lastPlayedWith: lastPlayedWith
         }
 
-        cache.letsCacheLastPlayedWith(data)
+        cache.letsCacheLastPlayedWith({ ...data })
       })
   }
 }

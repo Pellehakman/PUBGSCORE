@@ -8,7 +8,7 @@ export default defineComponent({
   components: { PlayerName },
   setup() {
     const cache = useCache()
-    // cache.$reset()
+    cache.$reset()
     const pubgError = ref('')
 
     const handleError = (fromError: string) => {

@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid'
 import { defineStore } from 'pinia'
 
-export const useCache = defineStore('idfddddes', {
+export const useCache = defineStore('7id', {
   state: () => ({
     cacheList: [] as Array<any>
   }),
@@ -44,4 +44,3 @@ export const useCache = defineStore('idfddddes', {
     }
   }
 })
-

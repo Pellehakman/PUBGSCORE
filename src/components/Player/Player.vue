@@ -6,7 +6,7 @@
       <figure class="h-12 w-12 flex justify-center items-center bg-yellow-500 font-bold">
         <span class="text-white text-">1</span>
       </figure>
-      <span class="font-bold text-sm px-2 mr-auto">{{ playerSearch }}</span>
+      <span class="font-bold text-sm px-2 mr-auto">{{ playerName }}</span>
 
       <div class="flex justify-center items-center pr-4 h-full">
         <font-awesome-icon
@@ -39,7 +39,7 @@
                 icon="fa-solid fa-spinner"
               /> -->
             <font-awesome-icon
-              @click="filterData"
+              @click="getPlayer"
               class="peer icon-sm bg-white"
               icon="fa-solid fa-magnifying-glass"
             />
@@ -48,8 +48,11 @@
         <div class="px-2 pt-4 pb-2 flex flex-col">
           <span class="text-sm font-bold">HISTORY</span>
           <div class="text-sm flex flex-col">
-            <span>Phawkman</span>
-            <span>Ekkan</span>
+            <div v-for="(date, index) in data" :key="`dag_${index}`">
+              <span class="cursor-pointer" @click="handleHistoryName(date)" :ref="date.id">{{
+                date.name
+              }}</span>
+            </div>
           </div>
         </div>
       </div>
