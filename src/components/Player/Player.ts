@@ -1,10 +1,7 @@
-import $getPlayer from '@/services/account/getPlayer'
-import $seasons from '@/services/seasons/seasons'
-
 import { useCache } from '@/stores/cacheStore'
 import { useOptions } from '@/stores/options'
 import { usePlayers } from '@/stores/playerStore'
-import { defineComponent, onMounted, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'Player',
@@ -33,7 +30,6 @@ export default defineComponent({
       console.log(JSON.parse(JSON.stringify(options.$state.options)))
       console.log(data)
     }
-
 
     // search for player
     // if player === cache.player
