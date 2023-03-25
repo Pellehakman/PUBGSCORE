@@ -28,7 +28,6 @@ export default defineComponent({
 
     const handleData = async (data: any) => {
       console.log(JSON.parse(JSON.stringify(options.$state.options)))
-      console.log(data)
     }
 
     // search for player

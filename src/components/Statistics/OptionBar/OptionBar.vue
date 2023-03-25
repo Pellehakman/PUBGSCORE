@@ -2,30 +2,38 @@
 
 <template>
   <form class="option-bar-container">
-    <select v-model="optionForm.gamemode" class="option-bar">
+    <!-- <select @change="needSave" v-model="optionForm.gamemode" class="option-bar">
       <option v-for="f in data.gamemode" :key="f.id" :value="f.id">
         {{ f.gamemode }}
       </option>
+    </select> -->
+
+    <select @change="updateGamemodeOptions" v-model="gamemode" class="option-bar">
+      <option :disabled="gametype === 'ranked'" value="solo-fpp">SOLO</option>
+      <option :disabled="gametype === 'ranked'" value="duo-fpp">DUO</option>
+      <option value="squad-fpp">SQUAD</option>
+      <option :disabled="gametype === 'ranked'" value="solo">SOLO TPP</option>
+      <option :disabled="gametype === 'ranked'" value="duo">DUO TPP</option>
+      <option :disabled="gametype === 'ranked'" value="squad">SQUAD TPP</option>
     </select>
 
-    <select v-model="optionForm.gametype" class="option-bar">
-      <option v-for="f in data.gametype" :key="f.gametype" :value="f.id">
-        {{ f.gametype }}
-      </option>
+    <select @change="updateGametypeOptions" v-model="gametype" class="option-bar">
+      <option value="normal">Normal</option>
+      <option value="ranked">Ranked</option>
     </select>
-    <select :disabled="isAlltime" v-model="optionForm.season" class="option-bar">
+
+    <select @change="updateSeasonOptions" :disabled="isActive" v-model="seasons" class="option-bar">
       <option v-for="f in data.season" :key="f.id" :value="f.id">
         {{ f.name }}
       </option>
     </select>
 
-    <select v-model="optionForm.alltimeType" class="option-bar">
-      <option v-for="f in data.alltimeTypes" :key="f.alltimeType" :value="f.id">
-        {{ f.alltimeType }}
-      </option>
+    <select @change="updateAlltimeOptions" class="option-bar">
+      <option value="season">SEASON</option>
+      <option value="alltime">ALLTIME</option>
     </select>
 
-    <button @click.prevent="handleOptionForm" class="btn btn-default btn--success">UPDATE</button>
+    <button @click.prevent="handleOptionForm" class="btn btn-default">UPDATE</button>
   </form>
 </template>
 <!-- <div v-for="(date, index) in calenderData" :key="`dag_${index}`">

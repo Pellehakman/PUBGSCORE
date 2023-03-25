@@ -48,11 +48,11 @@
         <div class="px-2 pt-4 pb-2 flex flex-col">
           <span class="text-sm font-bold">HISTORY</span>
           <div class="text-sm flex flex-col">
-            <div v-for="(date, index) in data" :key="`dag_${index}`">
+            <!-- <div v-for="(date, index) in data" :key="`dag_${index}`">
               <span class="cursor-pointer" @click="handleHistoryName(date)" :ref="date.id">{{
                 date.name
               }}</span>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

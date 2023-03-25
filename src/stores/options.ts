@@ -8,7 +8,7 @@ export const useOptions = defineStore('options', {
   actions: {
     storeOptions(data: any) {
       this.options = data
-      console.log(data)
+      console.log(JSON.parse(JSON.stringify(data)))
     }
   }
 })
