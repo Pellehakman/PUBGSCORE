@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid'
 import { defineStore } from 'pinia'
 
-export const useCache = defineStore('7id', {
+export const useCache = defineStore('efid', {
   state: () => ({
     cacheList: [] as Array<any>
   }),
@@ -13,12 +13,14 @@ export const useCache = defineStore('7id', {
       }
     },
     letsCacheLifetime(data: any) {
-      if (
-        JSON.parse(JSON.stringify(this.$state.cacheList)).find((f: any) => f.id === data.id) &&
-        JSON.parse(JSON.stringify(this.$state.cacheList)).find((f: any) => f.lifetime.length === 0)
-      ) {
-        this.cacheList.find((f: any) => f.id === data.id).lifetime.push({ ...data })
-      }
+      console.log('cunt')
+      if (JSON.parse(JSON.stringify(this.$state.cacheList)))
+        JSON.parse(JSON.stringify(this.$state.cacheList)).forEach((element: any) => {
+          if (element.id === data.id && element.gamemode === data.gamemode) {
+            this.cacheList.find((f: any) => f.id === data.id).lifetime.push({ ...data })
+          }
+        })
+      // this.cacheList.find((f: any) => f.id === data.id).lifetime.push({ ...data })
     },
 
     letsCacheLastPlayedWith(data: any) {

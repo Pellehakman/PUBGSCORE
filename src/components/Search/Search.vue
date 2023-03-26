@@ -6,6 +6,7 @@
       IS YOUR SQUAD <br />
       READY TO GO PRO?
     </h1>
+    <button @click="reset">RESET</button>
 
     <p class="text-m font-open">
       In this applicatiodn you can build your team and compare it against the top teams.<br />

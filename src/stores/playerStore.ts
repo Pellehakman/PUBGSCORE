@@ -1,14 +1,28 @@
-import { nanoid } from 'nanoid'
 import { defineStore } from 'pinia'
 
-export const usePlayers = defineStore('fplayers', {
+export const usePlayerStore = defineStore('fplasyers', {
   state: () => ({
-    activePlayer: [] as Array<any>
+    playerOne: [] as any,
+    playerTwo: [] as any,
+    playerThree: [] as any,
+    playerFour: [] as any
   }),
   persist: true,
   actions: {
-    activePlayer(data: any) {
-      this.$state.activePlayer.push(data)
+    setPlayerOne(data: any) {
+      this.playerOne = data
+      console.log(data)
+    },
+    setPlayerTwo(data: any) {
+      this.playerTwo = data
+      console.log(data)
+    },
+    setPlayerThree(data: any) {
+      this.playerThree = data
+      console.log(data)
+    },
+    setPlayerFour(data: any) {
+      this.playerFour = data
       console.log(data)
     }
   }

@@ -1,5 +1,7 @@
 import PlayerName from '@/components/PlayerName/PlayerName.vue'
 import { useCache } from '@/stores/cacheStore'
+import { useOptions } from '@/stores/options'
+import { usePlayerStore } from '@/stores/playerStore'
 
 import { defineComponent, ref } from 'vue'
 
@@ -8,7 +10,9 @@ export default defineComponent({
   components: { PlayerName },
   setup() {
     const cache = useCache()
-    cache.$reset()
+    const options = useOptions()
+    const player = usePlayerStore()
+    // cache.$reset()
     const pubgError = ref('')
 
     const handleError = (fromError: string) => {
@@ -19,11 +23,15 @@ export default defineComponent({
       console.log('search')
     }
 
-    // const handleGuest = () => {
-    //   $fireAccount.LoginGuest()
-    // }
+    const reset = () => {
+      // // $fireAccount.LoginGuest()
+      cache.$reset()
+      options.$reset()
+      player.$reset()
+    }
 
     return {
+      reset,
       // handleGuest,
       pubgError,
       handleSerach,

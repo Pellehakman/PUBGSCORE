@@ -42,7 +42,6 @@ class GetPlayer {
             console.log('ERROR: service:getPlayer.ts', response.errors)
             this.error = await response.errors[0].detail
           } else {
-            console.log(response)
             const data = {
               id: response.data[0].id,
               name: response.data[0].attributes.name,

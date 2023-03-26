@@ -1,18 +1,19 @@
 <script lang="ts" src="./Player"></script>
 
 <template>
-  <article id="playerSearchDropdown" class="card-container overflow-hidden border border-stone-400">
-    <div @click="handlePlayerDropdown" class="flex z-50 bg-stone-100 items-center shadow-sm">
+  {{ loading }}
+  <article id="playerDropdown" class="card-container overflow-hidden border border-stone-400">
+    <div @click="handlePlayerDropdown(1)" class="flex z-50 bg-stone-100 items-center shadow-sm">
       <figure class="h-12 w-12 flex justify-center items-center bg-yellow-500 font-bold">
         <span class="text-white text-">1</span>
       </figure>
-      <span class="font-bold text-sm px-2 mr-auto">{{ playerName }}</span>
+      <span class="font-bold text-sm px-2 mr-auto">{{ activePlayer }}</span>
 
       <div class="flex justify-center items-center pr-4 h-full">
         <font-awesome-icon
           class="icon-pen transition-all"
           :class="{
-            '-rotate-180 icon-pen': playerDropdown
+            '-rotate-180 icon-pen': dropdown1
           }"
           icon="fa-solid fa-chevron-down"
         />
@@ -20,7 +21,7 @@
     </div>
 
     <Transition class="overflow-hidden" name="playerTransition">
-      <div class="bg-stone-100 p-2 shadow-lg" v-if="playerDropdown">
+      <div class="bg-stone-100 p-2 shadow-lg" v-if="dropdown1">
         <div class="input-container">
           <input
             v-model="playerSearch"
@@ -34,10 +35,6 @@
 
           <label for="player" class="input-label">PLAYER NAME</label>
           <button class="input-icon-sm z-40">
-            <!-- <font-awesome-icon
-                class="peer animate-spin text-white icon-md"
-                icon="fa-solid fa-spinner"
-              /> -->
             <font-awesome-icon
               @click="getPlayer"
               class="peer icon-sm bg-white"
@@ -48,9 +45,173 @@
         <div class="px-2 pt-4 pb-2 flex flex-col">
           <span class="text-sm font-bold">HISTORY</span>
           <div class="text-sm flex flex-col">
-            <!-- <div v-for="(date, index) in data" :key="`dag_${index}`">
+            <!-- <div v-for="(date, index) in suggestions" :key="`dag_${index}`">
               <span class="cursor-pointer" @click="handleHistoryName(date)" :ref="date.id">{{
-                date.name
+                date
+              }}</span>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </Transition>
+    <div class="flex flex-col">{{ players.$state.playerOne.name }}</div>
+  </article>
+
+  <article id="playerDropdown" class="card-container overflow-hidden border border-stone-400">
+    <div @click="handlePlayerDropdown(2)" class="flex z-50 bg-stone-100 items-center shadow-sm">
+      <figure class="h-12 w-12 flex justify-center items-center bg-orange-600 font-bold">
+        <span class="text-white text-">2</span>
+      </figure>
+      <span class="font-bold text-sm px-2 mr-auto">{{ activePlayer }}</span>
+
+      <div class="flex justify-center items-center pr-4 h-full">
+        <font-awesome-icon
+          class="icon-pen transition-all"
+          :class="{
+            '-rotate-180 icon-pen': dropdown2
+          }"
+          icon="fa-solid fa-chevron-down"
+        />
+      </div>
+    </div>
+
+    <Transition class="overflow-hidden" name="playerTransition">
+      <div class="bg-stone-100 p-2 shadow-lg" v-if="dropdown2">
+        <div class="input-container">
+          <input
+            v-model="playerSearch"
+            :autofocus="true"
+            id="player"
+            type="text"
+            name="player"
+            class="input-field peer"
+            placeholder=" "
+          />
+
+          <label for="player" class="input-label">PLAYER NAME</label>
+          <button class="input-icon-sm z-40">
+            <font-awesome-icon
+              @click="getPlayer"
+              class="peer icon-sm bg-white"
+              icon="fa-solid fa-magnifying-glass"
+            />
+          </button>
+        </div>
+        <div class="px-2 pt-4 pb-2 flex flex-col">
+          <span class="text-sm font-bold">HISTORY</span>
+          <div class="text-sm flex flex-col">
+            <!-- <div v-for="(date, index) in suggestions" :key="`dag_${index}`">
+              <span class="cursor-pointer" @click="handleHistoryName(date)" :ref="date.id">{{
+                date
+              }}</span>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </Transition>
+    <div class="flex flex-col">{{ players.$state.playerTwo.name }}</div>
+  </article>
+
+  <article id="playerDropdown" class="card-container overflow-hidden border border-stone-400">
+    <div @click="handlePlayerDropdown(3)" class="flex z-50 bg-stone-100 items-center shadow-sm">
+      <figure class="h-12 w-12 flex justify-center items-center bg-blue-700 font-bold">
+        <span class="text-white text-">3</span>
+      </figure>
+      <span class="font-bold text-sm px-2 mr-auto">{{ activePlayer }}</span>
+
+      <div class="flex justify-center items-center pr-4 h-full">
+        <font-awesome-icon
+          class="icon-pen transition-all"
+          :class="{
+            '-rotate-180 icon-pen': dropdown3
+          }"
+          icon="fa-solid fa-chevron-down"
+        />
+      </div>
+    </div>
+
+    <Transition class="overflow-hidden" name="playerTransition">
+      <div class="bg-stone-100 p-2 shadow-lg" v-if="dropdown3">
+        <div class="input-container">
+          <input
+            v-model="playerSearch"
+            :autofocus="true"
+            id="player"
+            type="text"
+            name="player"
+            class="input-field peer"
+            placeholder=" "
+          />
+
+          <label for="player" class="input-label">PLAYER NAME</label>
+          <button class="input-icon-sm z-40">
+            <font-awesome-icon
+              @click="getPlayer"
+              class="peer icon-sm bg-white"
+              icon="fa-solid fa-magnifying-glass"
+            />
+          </button>
+        </div>
+        <div class="px-2 pt-4 pb-2 flex flex-col">
+          <span class="text-sm font-bold">HISTORY</span>
+          <div class="text-sm flex flex-col">
+            <!-- <div v-for="(date, index) in suggestions" :key="`dag_${index}`">
+              <span class="cursor-pointer" @click="handleHistoryName(date)" :ref="date.id">{{
+                date
+              }}</span>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </Transition>
+    <div class="flex flex-col"></div>
+  </article>
+  <article id="playerDropdown" class="card-container overflow-hidden border border-stone-400">
+    <div @click="handlePlayerDropdown(4)" class="flex z-50 bg-stone-100 items-center shadow-sm">
+      <figure class="h-12 w-12 flex justify-center items-center bg-green-800 font-bold">
+        <span class="text-white text-">4</span>
+      </figure>
+      <span class="font-bold text-sm px-2 mr-auto">{{ activePlayer }}</span>
+
+      <div class="flex justify-center items-center pr-4 h-full">
+        <font-awesome-icon
+          class="icon-pen transition-all"
+          :class="{
+            '-rotate-180 icon-pen': dropdown4
+          }"
+          icon="fa-solid fa-chevron-down"
+        />
+      </div>
+    </div>
+
+    <Transition class="overflow-hidden" name="playerTransition">
+      <div class="bg-stone-100 p-2 shadow-lg" v-if="dropdown4">
+        <div class="input-container">
+          <input
+            v-model="playerSearch"
+            :autofocus="true"
+            id="player"
+            type="text"
+            name="player"
+            class="input-field peer"
+            placeholder=" "
+          />
+
+          <label for="player" class="input-label">PLAYER NAME</label>
+          <button class="input-icon-sm z-40">
+            <font-awesome-icon
+              @click="getPlayer"
+              class="peer icon-sm bg-white"
+              icon="fa-solid fa-magnifying-glass"
+            />
+          </button>
+        </div>
+        <div class="px-2 pt-4 pb-2 flex flex-col">
+          <span class="text-sm font-bold">HISTORY</span>
+          <div class="text-sm flex flex-col">
+            <!-- <div v-for="(date, index) in suggestions" :key="`dag_${index}`">
+              <span class="cursor-pointer" @click="handleHistoryName(date)" :ref="date.id">{{
+                date
               }}</span>
             </div> -->
           </div>

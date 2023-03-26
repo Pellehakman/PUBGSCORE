@@ -2,10 +2,9 @@
 
 <template>
   <div class="stats-container">
-    <Player />
-    <!-- <Player />
-    <Player />
-    <Player /> -->
+    <Suspense>
+      <Player />
+    </Suspense>
   </div>
 </template>
 

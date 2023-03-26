@@ -7,7 +7,9 @@ import type AppFooter from '@/components/AppFooter/AppFooter';
 
   <div class="mx-auto h-[calc(100vh_-_7rem)]">
     <div class="flex h-full p-32">
-      <Search />
+      ARE YOU READY TO GO PRO?
+      <button @click="reset">X RESET X</button>
+      <!-- <Search /> -->
     </div>
   </div>
   <AppFooter />

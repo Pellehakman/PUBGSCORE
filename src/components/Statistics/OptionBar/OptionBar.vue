@@ -17,9 +17,14 @@
       <option :disabled="gametype === 'ranked'" value="squad">SQUAD TPP</option>
     </select>
 
-    <select @change="updateGametypeOptions" v-model="gametype" class="option-bar">
-      <option value="normal">Normal</option>
-      <option value="ranked">Ranked</option>
+    <select
+      @change="updateGametypeOptions"
+      :disabled="isActive"
+      v-model="gametype"
+      class="option-bar"
+    >
+      <option value="normal">NORMAL</option>
+      <option value="ranked">RANKED</option>
     </select>
 
     <select @change="updateSeasonOptions" :disabled="isActive" v-model="seasons" class="option-bar">
@@ -28,22 +33,22 @@
       </option>
     </select>
 
-    <select @change="updateAlltimeOptions" class="option-bar">
+    <select @change="updateAlltimeOptions" v-model="alltime" class="option-bar">
       <option value="season">SEASON</option>
       <option value="alltime">ALLTIME</option>
     </select>
 
-    <button @click.prevent="handleOptionForm" class="btn btn-default">UPDATE</button>
+    <button
+      @click.prevent="handleOptionForm"
+      :class="[
+        save ? 'btn--success border-2 border-transparent ' : 'border-2 rounded-sm border-white'
+      ]"
+      class="btn btn-default"
+    >
+      UPDATE
+    </button>
   </form>
 </template>
-<!-- <div v-for="(date, index) in calenderData" :key="`dag_${index}`">
-  <BookingDate
-    :todaysDate="dateValue"
-    :date="date.date"
-    @onDateUpdate="BookingDayData"
-    @onDateObj="DateObj"
-  />
-</div> -->
 
 <style>
 .option-bar {

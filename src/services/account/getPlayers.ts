@@ -24,8 +24,6 @@ class GetPlayers {
     const values = Object.values(hej)
     const string = values.join(',')
 
-    console.log(string)
-
     const players = `players?filter[playerIds]=${string}`
     const player_url = `${players}`
 
@@ -43,8 +41,7 @@ class GetPlayers {
       }
     })
       .then((response) => response.json())
-      .then((response) => {
-        console.log('1')
+      .then(async (response) => {
         if (response.data[0]) {
           const data = {
             id: response.data[0].id,
@@ -80,7 +77,6 @@ class GetPlayers {
         }
         if (response.data[3]) {
           const data = {
-            assign: 4,
             id: response.data[3].id,
             name: response.data[3].attributes.name,
             matches: response.data[3].relationships.matches.data,
@@ -90,6 +86,9 @@ class GetPlayers {
           }
           cache.letsCache(data)
         }
+      })
+      .then(() => {
+        $lifetime.GetLifetime()
       })
 
       .catch((err) => {

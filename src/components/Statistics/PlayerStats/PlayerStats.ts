@@ -1,5 +1,6 @@
 import Player from '@/components/Player/Player.vue'
-import { defineComponent, ref } from 'vue'
+
+import { computed, defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'PlayerStats',
@@ -14,6 +15,12 @@ export default defineComponent({
     const handlePlayerDropdown = () => {
       playerDropdown.value = !playerDropdown.value
     }
-    return { handlePlayerDropdown, playerDropdown }
+
+    const players = ref([])
+
+    const playersList = computed(() => {
+      return players.value
+    })
+    return { handlePlayerDropdown, playerDropdown, players, playersList }
   }
 })
