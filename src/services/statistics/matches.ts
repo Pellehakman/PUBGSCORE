@@ -1,14 +1,18 @@
 import { useCache } from '@/stores/cacheStore'
+import $getPlayers from '../account/getPlayers'
 
 class Matches {
   state: any
-  async GetMatches() {
+  async GetMatches(data: any) {
+    const last_match_id = data.relationships.matches.data[0].id
+    const player_id = data.attributes.name
+    console.log(player_id, last_match_id)
     const cache = useCache()
     // console.log(JSON.parse(JSON.stringify(cache.$state.cacheList)))
     //last match at(0)
-    const match = `matches/${cache.$state.cacheList.at(0).matches.at(0).id}`
+    const match = `matches/${last_match_id}`
     const match_url = `${match}`
-
+    console.log(`${import.meta.env.VITE_API_URL}${match_url}`)
     // console.log(JSON.parse(JSON.stringify(cache.$state.cacheList.at(-1).matches.at(-1).id)))
     await fetch(`${import.meta.env.VITE_API_URL}${match_url}`, {
       method: 'GET',
@@ -23,7 +27,7 @@ class Matches {
         const playerRosterId = response.included
           .filter((f: any) => f.type === 'participant')
           .filter((f: any) => {
-            if (f.attributes.stats.name === cache.$state.cacheList.at(0).name) return f
+            if (f.attributes.stats.name === player_id) return f
           })
 
         const rosters = response.included
@@ -47,14 +51,11 @@ class Matches {
           return a.concat(b, c, d)
         }
 
-        const lastPlayedWith = getPlayedWith().map((f: any) => f.attributes.stats.playerId)
+        const lastPlayedWith = Object.values(
+          getPlayedWith().map((f: any) => f.attributes.stats.playerId)
+        ).join(',')
 
-        const data = {
-          name: cache.$state.cacheList.at(0).name,
-          lastPlayedWith: lastPlayedWith
-        }
-
-        cache.letsCacheLastPlayedWith({ ...data })
+        await $getPlayers.GetPlayers(lastPlayedWith)
       })
   }
 }

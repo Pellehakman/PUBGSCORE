@@ -1,3 +1,5 @@
+import $lifetime from '@/services/statistics/lifetime'
+import { collection } from 'firebase/firestore'
 import { defineStore } from 'pinia'
 
 export const usePlayerStore = defineStore('fplasyers', {
@@ -5,25 +7,31 @@ export const usePlayerStore = defineStore('fplasyers', {
     playerOne: [] as any,
     playerTwo: [] as any,
     playerThree: [] as any,
-    playerFour: [] as any
+    playerFour: [] as any,
+    newCollection: [] as any
   }),
+
   persist: true,
   actions: {
-    setPlayerOne(data: any) {
+    async setPlayerOne(data: any) {
       this.playerOne = data
-      console.log(data)
     },
-    setPlayerTwo(data: any) {
+    async setPlayerTwo(data: any) {
       this.playerTwo = data
-      console.log(data)
     },
     setPlayerThree(data: any) {
       this.playerThree = data
-      console.log(data)
     },
     setPlayerFour(data: any) {
       this.playerFour = data
-      console.log(data)
+    },
+    collection() {
+      this.newCollection = [
+        this.$state.playerOne,
+        this.$state.playerTwo,
+        this.$state.playerThree,
+        this.$state.playerFour
+      ]
     }
   }
 })

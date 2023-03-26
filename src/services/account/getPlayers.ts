@@ -3,6 +3,7 @@ import { useChangeStore } from '@/stores/changeStore'
 import { useCache } from '@/stores/cacheStore'
 import $lifetime from '../statistics/lifetime'
 import $matches from '../statistics/matches'
+import { usePlayerStore } from '@/stores/playerStore'
 
 class GetPlayers {
   fetchPlayer: playerModel | undefined | any
@@ -16,23 +17,14 @@ class GetPlayers {
     return this.error
   }
 
-  async GetPlayers() {
+  async GetPlayers(data: any) {
     const cache = useCache()
+    const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
+    const players = usePlayerStore()
 
-    const hej = JSON.parse(JSON.stringify(cache.$state.cacheList.at(0).lastPlayedWith[0]))
+    const player = `players?filter[playerIds]=${data}`
+    const player_url = `${player}`
 
-    const values = Object.values(hej)
-    const string = values.join(',')
-
-    const players = `players?filter[playerIds]=${string}`
-    const player_url = `${players}`
-
-    // if (
-    //   JSON.parse(JSON.stringify(cache.$state.cacheList)).find((f: any) => f.name === playerName)
-    // ) {
-    //   console.log('PLAYER FOUND')
-    // } else {
-    //   console.log('NO PLAYER, LETS ADD')
     await fetch(`${import.meta.env.VITE_API_URL}${player_url}`, {
       method: 'GET',
       headers: {
@@ -48,7 +40,6 @@ class GetPlayers {
             name: response.data[0].attributes.name,
             matches: response.data[0].relationships.matches.data,
             lifetime: [],
-            lastPlayedWith: [],
             seasons: []
           }
           cache.letsCache(data)
@@ -59,9 +50,9 @@ class GetPlayers {
             name: response.data[1].attributes.name,
             matches: response.data[1].relationships.matches.data,
             lifetime: [],
-            lastPlayedWith: [],
             seasons: []
           }
+
           cache.letsCache(data)
         }
         if (response.data[2]) {
@@ -70,9 +61,9 @@ class GetPlayers {
             name: response.data[2].attributes.name,
             matches: response.data[2].relationships.matches.data,
             lifetime: [],
-            lastPlayedWith: [],
             seasons: []
           }
+
           cache.letsCache(data)
         }
         if (response.data[3]) {
@@ -81,9 +72,9 @@ class GetPlayers {
             name: response.data[3].attributes.name,
             matches: response.data[3].relationships.matches.data,
             lifetime: [],
-            lastPlayedWith: [],
             seasons: []
           }
+
           cache.letsCache(data)
         }
       })
