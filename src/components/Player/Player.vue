@@ -54,7 +54,9 @@
         </div>
       </div>
     </Transition>
-    <div class="flex flex-col">{{ players.$state.playerOne.name }}</div>
+    <div v-if="players.$state.player1" class="flex flex-col">
+      {{ players.$state.player1.name }}
+    </div>
   </article>
 
   <article id="playerDropdown" class="card-container overflow-hidden border border-stone-400">
@@ -109,7 +111,9 @@
         </div>
       </div>
     </Transition>
-    <div class="flex flex-col">{{ players.$state.playerTwo.name }}</div>
+    <div v-if="players.$state.player2" class="flex flex-col">
+      {{ players.$state.player2.name }}
+    </div>
   </article>
 
   <article id="playerDropdown" class="card-container overflow-hidden border border-stone-400">
@@ -164,7 +168,9 @@
         </div>
       </div>
     </Transition>
-    <div class="flex flex-col"></div>
+    <div v-if="players.$state.player3" class="flex flex-col">
+      {{ players.$state.player3.name }}
+    </div>
   </article>
   <article id="playerDropdown" class="card-container overflow-hidden border border-stone-400">
     <div @click="handlePlayerDropdown(4)" class="flex z-50 bg-stone-100 items-center shadow-sm">
@@ -218,7 +224,9 @@
         </div>
       </div>
     </Transition>
-    <div class="flex flex-col"></div>
+    <div v-if="players.$state.player4" class="flex flex-col">
+      {{ players.$state.player4.name }}
+    </div>
   </article>
 </template>
 
