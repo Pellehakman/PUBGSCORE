@@ -4,10 +4,10 @@ import { defineStore } from 'pinia'
 
 export const usePlayerStore = defineStore('fpeladsyers', {
   state: () => ({
-    player1: '',
-    player2: '',
-    player3: '',
-    player4: ''
+    player1: [] as any,
+    player2: [] as any,
+    player3: [] as any,
+    player4: [] as any
   }),
 
   persist: true,

@@ -50,7 +50,6 @@ export default defineComponent({
     }
     const displayPlayer1 = ref()
     const loading = ref(false)
-    console.log(parseJSON(players.$state))
 
     const getPlayer = async () => {
       // loading.value = true
@@ -61,7 +60,7 @@ export default defineComponent({
 
       await $getPlayer.GetPlayer(playerSearch.value)
       await $initPlayers.setInit(playerSearch.value)
-      await $activePlayers.activePlayers()
+      // await $activePlayers.activePlayers()
       // await $activePlayers.setInit()
       // await $lifetime.GetLifetime()
       //   players.setPlayerOne(

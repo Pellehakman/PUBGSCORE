@@ -1,3 +1,4 @@
+import $lifetime from '@/services/statistics/lifetime'
 import { defineStore } from 'pinia'
 
 export const useOptions = defineStore('options', {
@@ -8,7 +9,7 @@ export const useOptions = defineStore('options', {
   actions: {
     storeOptions(data: any) {
       this.options = data
-      console.log(JSON.parse(JSON.stringify(data)))
+      $lifetime.GetLifetime()
     }
   }
 })

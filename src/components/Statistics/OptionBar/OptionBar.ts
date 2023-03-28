@@ -1,6 +1,7 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import seasonOptions from '@/services/seasons/seasons.json'
 import { useOptions } from '@/stores/options'
+import $lifetime from '@/services/statistics/lifetime'
 
 export default defineComponent({
   name: 'OptionBar',

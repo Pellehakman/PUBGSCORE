@@ -4,7 +4,7 @@ import { useCache } from '@/stores/cacheStore'
 import $lifetime from '../statistics/lifetime'
 import $matches from '../statistics/matches'
 import { usePlayerStore } from '@/stores/playerStore'
-
+const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 class GetPlayers {
   fetchPlayer: playerModel | undefined | any
   error: string | undefined
@@ -19,9 +19,6 @@ class GetPlayers {
 
   async GetPlayers(data: any) {
     const cache = useCache()
-    const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
-    const players = usePlayerStore()
-
     const player = `players?filter[playerIds]=${data}`
     const player_url = `${player}`
 
@@ -78,9 +75,9 @@ class GetPlayers {
           cache.letsCache(data)
         }
       })
-      .then(() => {
-        $lifetime.GetLifetime()
-      })
+      // .then(() => {
+      //   $lifetime.GetLifetime()
+      // })
 
       .catch((err) => {
         console.log(err)

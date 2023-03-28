@@ -12,51 +12,43 @@ class InitPlayers {
     const players = usePlayerStore()
     const toCache = parseJSON(cache.$state.cacheList)
 
-    if (players.$state.player1.length < 1) {
-      for (let i = 0; i < toCache.length; i++) {
-        if (toCache[i].name === search) {
-          players.setPlayer1(toCache[i].name)
-        }
-      }
-    }
-    console.log(parseJSON(players.$state.player1))
-
-    if (players.$state.player2.length < 1) {
-      for (let i = 0; i < toCache.length; i++) {
-        if (
-          toCache[i].name !== players.$state.player1 &&
-          toCache[i].name !== players.$state.player3 &&
-          toCache[i].name !== players.$state.player4
-        ) {
-          await players.setPlayer2(await toCache[i].name)
-        }
+    for (let i = 0; i < toCache.length; i++) {
+      if (toCache[i].name === search) {
+        players.setPlayer1({ name: toCache[i].name, id: toCache[i].id })
       }
     }
 
-    if (players.$state.player3.length < 1) {
-      for (let i = 0; i < toCache.length; i++) {
-        if (
-          toCache[i].name !== players.$state.player1 &&
-          toCache[i].name !== players.$state.player2 &&
-          toCache[i].name !== players.$state.player4
-        ) {
-          await players.setPlayer3(await toCache[i].name)
-        }
+    for (let i = 0; i < toCache.length; i++) {
+      if (
+        toCache[i].name !== players.$state.player1.name &&
+        toCache[i].name !== players.$state.player3.name &&
+        toCache[i].name !== players.$state.player4.name
+      ) {
+        await players.setPlayer2({ name: toCache[i].name, id: toCache[i].id })
       }
     }
 
-    if (players.$state.player4.length < 1) {
-      for (let i = 0; i < toCache.length; i++) {
-        if (
-          toCache[i].name !== players.$state.player1 &&
-          toCache[i].name !== players.$state.player2 &&
-          toCache[i].name !== players.$state.player3
-        ) {
-          await players.setPlayer4(await toCache[i].name)
-        }
+    for (let i = 0; i < toCache.length; i++) {
+      if (
+        toCache[i].name !== players.$state.player1.name &&
+        toCache[i].name !== players.$state.player2.name &&
+        toCache[i].name !== players.$state.player4.name
+      ) {
+        await players.setPlayer3({ name: toCache[i].name, id: toCache[i].id })
       }
     }
-    console.log(parseJSON(players.$state))
+
+    for (let i = 0; i < toCache.length; i++) {
+      if (
+        toCache[i].name !== players.$state.player1.name &&
+        toCache[i].name !== players.$state.player2.name &&
+        toCache[i].name !== players.$state.player3.name
+      ) {
+        await players.setPlayer4({ name: toCache[i].name, id: toCache[i].id })
+      }
+    }
+
+    await $lifetime.GetLifetime()
   }
 }
 

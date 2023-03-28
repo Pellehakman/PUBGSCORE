@@ -10,21 +10,6 @@ class ActivePlayers {
     const players = usePlayerStore()
     const toCache = parseJSON(cache.$state.cacheList)
     const options = useOptions()
-
-    function howYouGetDataFromActivePlayer(num: string) {
-      return parseJSON(cache.$state.cacheList).find((f: any) => f.name === num)
-    }
-
-    const activePlayer1 = howYouGetDataFromActivePlayer(parseJSON(players.$state.player1))
-    console.log(activePlayer1)
-
-    const data = [activePlayer1.id]
-    // HÄR SLUTADE DU... Prova att skicka alla ids till lifetime och sen kör du lifetime
-    // istället för att för från cachelist, kör från active players.ALLTID
-    console.log(data)
-    // $lifetime()
-
-    console.log(options.$state.options)
   }
 }
 

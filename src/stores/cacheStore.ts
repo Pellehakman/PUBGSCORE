@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-
+const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 export const useCache = defineStore('efid', {
   state: () => ({
     cacheList: [] as Array<any>
@@ -12,12 +12,15 @@ export const useCache = defineStore('efid', {
       }
     },
     letsCacheLifetime(data: any) {
-      if (JSON.parse(JSON.stringify(this.$state.cacheList)))
-        JSON.parse(JSON.stringify(this.$state.cacheList)).forEach((element: any) => {
-          if (element.id === data.id && element.gamemode === data.gamemode) {
-            this.cacheList.find((f: any) => f.id === data.id).lifetime.push({ ...data })
-          }
-        })
+      if (
+        this.$state.cacheList
+          .find((f: any) => f.id === data.id)
+          .lifetime.find((g: any) => g.gamemode === data.gamemode)
+      ) {
+        console.log('already data')
+      } else {
+        this.cacheList.find((f: any) => f.id === data.id).lifetime.push({ ...data })
+      }
     },
 
     letsCacheLastPlayedWith(data: any) {
