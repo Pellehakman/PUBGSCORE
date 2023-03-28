@@ -49,6 +49,7 @@ export default defineComponent({
     }
     const displayPlayer1 = ref()
     const loading = ref(false)
+    console.log(parseJSON(players.$state))
 
     const getPlayer = async () => {
       // loading.value = true
@@ -60,7 +61,7 @@ export default defineComponent({
       await $getPlayer.GetPlayer(playerSearch.value)
       await $activePlayers.setInit(playerSearch.value)
       // await $activePlayers.setInit()
-      await $lifetime.GetLifetime()
+      // await $lifetime.GetLifetime()
       //   players.setPlayerOne(
       //     parseJSON(cache.$state.cacheList).find((f: any) => f.name === playerSearch.value)
       //   )

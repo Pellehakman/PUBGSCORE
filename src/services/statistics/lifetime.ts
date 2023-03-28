@@ -4,11 +4,12 @@ import seasonOptions from '@/services/seasons/seasons.json'
 import { usePlayerStore } from '@/stores/playerStore'
 
 class Lifetime {
-  async GetLifetime() {
+  async GetLifetime(player1: any) {
     const cache = useCache()
     const data = seasonOptions
     const options = useOptions()
     const player = usePlayerStore()
+    console.log(player1)
     // if players in cache, check default options value and then run lifetime.
     // active players should only be id. playerone is always the name you searched for
     // the other ones is the rest
