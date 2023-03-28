@@ -19,6 +19,8 @@ class ActivePlayers {
     console.log(activePlayer1)
 
     const data = [activePlayer1.id]
+    // HÄR SLUTADE DU... Prova att skicka alla ids till lifetime och sen kör du lifetime
+    // istället för att för från cachelist, kör från active players.ALLTID
     console.log(data)
     // $lifetime()
 
