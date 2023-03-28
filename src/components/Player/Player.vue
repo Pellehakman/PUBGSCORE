@@ -228,7 +228,7 @@
       {{ players.$state.player4 }}
     </div>
   </article>
-</template> 
+</template>
 
 <style>
 .playerTransition-leave-to,

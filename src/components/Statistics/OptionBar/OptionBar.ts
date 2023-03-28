@@ -9,6 +9,8 @@ export default defineComponent({
     const options = useOptions()
     const save = ref(false)
     onMounted(() => {
+      handleOptionForm()
+
       if (gametype.value === 'ranked') {
         gamemode.value = 'squad-fpp'
       }

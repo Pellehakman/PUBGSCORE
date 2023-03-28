@@ -1,4 +1,4 @@
-import $activePlayers from '@/services/account/activePlayers'
+import $initPlayers from '@/services/account/initPlayers'
 import $getPlayer from '@/services/account/getPlayer'
 import $lifetime from '@/services/statistics/lifetime'
 import { useCache } from '@/stores/cacheStore'
@@ -6,6 +6,7 @@ import { useGeneralStore } from '@/stores/generalStore'
 import { useOptions } from '@/stores/options'
 import { usePlayerStore } from '@/stores/playerStore'
 import { defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import $activePlayers from '@/services/account/activePlayers'
 
 export default defineComponent({
   name: 'Player',
@@ -59,7 +60,8 @@ export default defineComponent({
       // } else {
 
       await $getPlayer.GetPlayer(playerSearch.value)
-      await $activePlayers.setInit(playerSearch.value)
+      await $initPlayers.setInit(playerSearch.value)
+      await $activePlayers.activePlayers()
       // await $activePlayers.setInit()
       // await $lifetime.GetLifetime()
       //   players.setPlayerOne(
