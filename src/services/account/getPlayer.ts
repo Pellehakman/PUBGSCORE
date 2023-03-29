@@ -2,7 +2,7 @@ import type { playerModel } from '@/models/models'
 import { useChangeStore } from '@/stores/changeStore'
 import { useCache } from '@/stores/cacheStore'
 import $lifetime from '../statistics/lifetime'
-import $matches from '../statistics/matches'
+import $matches from '../statistics/lastPlayedWith'
 import $getPlayers from './getPlayers'
 
 class GetPlayer {

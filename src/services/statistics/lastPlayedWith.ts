@@ -2,11 +2,12 @@ import { useCache } from '@/stores/cacheStore'
 import { useGeneralStore } from '@/stores/generalStore'
 import $getPlayers from '../account/getPlayers'
 
-class Matches {
+class LastPlayedWith {
   state: any
-  async GetMatches(data: any) {
-    const last_match_id = data.relationships.matches.data[0].id
-    const player_id = data.attributes.name
+  async GetLastPlayedWith(data: any) {
+    const last_match_id = data.data[0].relationships.matches.data[0].id
+
+    const player_id = data.data[0].attributes.name
     const match = `matches/${last_match_id}`
     const match_url = `${match}`
 
@@ -53,14 +54,15 @@ class Matches {
         //   getPlayedWith().map((f: any) => f.attributes.stats.playerId)
         // ).join(',')
         const lastPlayedWith = Object.values(
-          getPlayedWith().map((f: any) => f.attributes.stats.playerId)
+          getPlayedWith().map((f: any) => f.attributes.stats.name)
         ).join(',')
 
         generalStore.setSearchName(lastPlayedWith)
+        console.log(lastPlayedWith)
         await $getPlayers.GetPlayers()
       })
   }
 }
 
-const $matches = new Matches()
-export default $matches
+const $lastPlayedWith = new LastPlayedWith()
+export default $lastPlayedWith

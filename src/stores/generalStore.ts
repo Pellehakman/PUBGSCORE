@@ -2,13 +2,12 @@ import { defineStore } from 'pinia'
 
 export const useGeneralStore = defineStore('generalStore', {
   state: () => ({
-    searchName: [] as any
+    lastPlayedWith: [] as any
   }),
   persist: true,
   actions: {
     setSearchName(data: any) {
-      this.searchName = data
-      console.log(data)
+      this.lastPlayedWith = data
     }
   }
 })

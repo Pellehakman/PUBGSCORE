@@ -6,6 +6,7 @@ import { useOptions } from '@/stores/options'
 import { usePlayerStore } from '@/stores/playerStore'
 import { defineComponent, ref } from 'vue'
 import $activePlayers from '@/services/account/activePlayers'
+import $getPlayers from '@/services/account/getPlayers'
 
 export default defineComponent({
   name: 'Player',
@@ -55,9 +56,8 @@ export default defineComponent({
       //   players.setPlayerOne(data)
       // } else {
 
-      await $getPlayer.GetPlayer(playerSearch.value)
-      await $initPlayers.setInit(playerSearch.value)
-      await $activePlayers.activePlayers(playerSearch.value)
+      await $getPlayers.GetPlayers(playerSearch.value)
+    
 
       // await $activePlayers.activePlayers()
       // await $activePlayers.setInit()
