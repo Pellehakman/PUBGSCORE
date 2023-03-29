@@ -16,7 +16,6 @@ class Lifetime {
     for (const player in parseJSON(players.$state)) {
       ids.push(parseJSON(players.$state)[player].id)
     }
-    console.log('IDS here', ids)
 
     const playersString = Object.values([ids]).join(',')
 
@@ -33,6 +32,7 @@ class Lifetime {
     })
       .then((response) => response.json())
       .then(async (response) => {
+        console.log(response)
         for (let i = 0; i < response.data.length; i++) {
           if (response.data[i]) {
             const data = {

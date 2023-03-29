@@ -2,6 +2,7 @@ import { defineComponent, onMounted, ref } from 'vue'
 import seasonOptions from '@/services/seasons/seasons.json'
 import { useOptions } from '@/stores/options'
 import $lifetime from '@/services/statistics/lifetime'
+import $activePlayers from '@/services/account/activePlayers'
 
 export default defineComponent({
   name: 'OptionBar',
@@ -10,7 +11,9 @@ export default defineComponent({
     const options = useOptions()
     const save = ref(false)
     onMounted(() => {
-      handleOptionForm()
+      if (options.$state.options.length < 1) {
+        handleOptionForm()
+      }
 
       if (gametype.value === 'ranked') {
         gamemode.value = 'squad-fpp'
@@ -66,15 +69,17 @@ export default defineComponent({
 
     const isActive = ref(false)
 
-    const handleOptionForm = () => {
+    // HÄR SLUTADE DU. LIFETIME KAN INTE LÄSA IN OPTIONFORM DATA BEFORE LIFETIME RUNS
+
+    const handleOptionForm = async () => {
       const data = {
         gamemode: gamemode.value,
         gametype: gametype.value,
         season: seasons.value,
         alltime: alltime.value
       }
-
       options.storeOptions(data)
+
       save.value = false
     }
 
@@ -91,14 +96,6 @@ export default defineComponent({
       updateGamemodeOptions,
       updateGametypeOptions,
       updateSeasonOptions
-      // gamemode,
-      // gametype,
-      // options,
-      // handleOptionForm,
-      // triangle,
-      // // isRanked,
-      // data,
-      // hej
     }
   }
 })

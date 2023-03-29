@@ -1,3 +1,4 @@
+import $activePlayers from '@/services/account/activePlayers'
 import $lifetime from '@/services/statistics/lifetime'
 import { defineStore } from 'pinia'
 
@@ -7,9 +8,10 @@ export const useOptions = defineStore('options', {
   }),
   persist: true,
   actions: {
-    storeOptions(data: any) {
+    async storeOptions(data: any) {
       this.options = data
-      $lifetime.GetLifetime()
+      await $activePlayers.activePlayers()
+      // $lifetime.GetLifetime()
     }
   }
 })

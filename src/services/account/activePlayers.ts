@@ -8,8 +8,17 @@ class ActivePlayers {
   async activePlayers() {
     const cache = useCache()
     const players = usePlayerStore()
-    const toCache = parseJSON(cache.$state.cacheList)
     const options = useOptions()
+    // await $lifetime.GetLifetime()
+
+    const data = parseJSON(cache.$state.cacheList).find(
+      (f: any) => f.name === players.$state.player1.name
+    )
+    if (options.$state.options.length > 1) {
+      if (options.$state.options.alltime === 'alltime') {
+        return data.lifetime.find((f: any) => f.gamemode === options.$state.options.gamemode)
+      }
+    }
   }
 }
 

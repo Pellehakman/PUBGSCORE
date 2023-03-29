@@ -60,6 +60,8 @@ export default defineComponent({
 
       await $getPlayer.GetPlayer(playerSearch.value)
       await $initPlayers.setInit(playerSearch.value)
+      $activePlayers.activePlayers()
+
       // await $activePlayers.activePlayers()
       // await $activePlayers.setInit()
       // await $lifetime.GetLifetime()

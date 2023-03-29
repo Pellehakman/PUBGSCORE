@@ -1,10 +1,6 @@
 import type { playerModel } from '@/models/models'
-import { useChangeStore } from '@/stores/changeStore'
 import { useCache } from '@/stores/cacheStore'
-import $lifetime from '../statistics/lifetime'
-import $matches from '../statistics/matches'
-import { usePlayerStore } from '@/stores/playerStore'
-const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
+
 class GetPlayers {
   fetchPlayer: playerModel | undefined | any
   error: string | undefined

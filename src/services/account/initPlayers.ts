@@ -1,9 +1,6 @@
 import { useCache } from '@/stores/cacheStore'
-import { useGeneralStore } from '@/stores/generalStore'
 import { usePlayerStore } from '@/stores/playerStore'
-import { parse } from '@vue/compiler-dom'
 import $lifetime from '../statistics/lifetime'
-import $activePlayers from './activePlayers'
 const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 
 class InitPlayers {
