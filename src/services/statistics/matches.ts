@@ -1,4 +1,5 @@
 import { useCache } from '@/stores/cacheStore'
+import { useGeneralStore } from '@/stores/generalStore'
 import $getPlayers from '../account/getPlayers'
 
 class Matches {
@@ -6,13 +7,9 @@ class Matches {
   async GetMatches(data: any) {
     const last_match_id = data.relationships.matches.data[0].id
     const player_id = data.attributes.name
-    console.log(player_id, last_match_id)
-    const cache = useCache()
-    // console.log(JSON.parse(JSON.stringify(cache.$state.cacheList)))
-    //last match at(0)
     const match = `matches/${last_match_id}`
     const match_url = `${match}`
-    console.log(`${import.meta.env.VITE_API_URL}${match_url}`)
+
     // console.log(JSON.parse(JSON.stringify(cache.$state.cacheList.at(-1).matches.at(-1).id)))
     await fetch(`${import.meta.env.VITE_API_URL}${match_url}`, {
       method: 'GET',
@@ -50,12 +47,17 @@ class Matches {
           const d = getLastPlayedWithBySlot('3')
           return a.concat(b, c, d)
         }
+        const generalStore = useGeneralStore()
 
+        // const lastPlayedWith = Object.values(
+        //   getPlayedWith().map((f: any) => f.attributes.stats.playerId)
+        // ).join(',')
         const lastPlayedWith = Object.values(
           getPlayedWith().map((f: any) => f.attributes.stats.playerId)
         ).join(',')
 
-        await $getPlayers.GetPlayers(lastPlayedWith)
+        generalStore.setSearchName(lastPlayedWith)
+        await $getPlayers.GetPlayers()
       })
   }
 }

@@ -19,7 +19,6 @@ class GetPlayer {
 
   async GetPlayer(playerName: string) {
     const cache = useCache()
-    const changeStore: any = useChangeStore()
     const player = `players?filter[playerNames]=${playerName}`
     const player_url = `${player}`
 

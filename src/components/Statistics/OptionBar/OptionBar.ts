@@ -1,8 +1,9 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import seasonOptions from '@/services/seasons/seasons.json'
 import { useOptions } from '@/stores/options'
-import $lifetime from '@/services/statistics/lifetime'
 import $activePlayers from '@/services/account/activePlayers'
+import $getPlayers from '@/services/account/getPlayers'
+import $lifetime from '@/services/statistics/lifetime'
 
 export default defineComponent({
   name: 'OptionBar',
@@ -80,7 +81,9 @@ export default defineComponent({
       }
       options.storeOptions(data)
 
-      save.value = false
+      // await $lifetime.GetLifetime()
+
+      console.log('cunt')
     }
 
     return {

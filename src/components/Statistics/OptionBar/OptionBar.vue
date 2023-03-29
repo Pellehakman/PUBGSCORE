@@ -38,15 +38,16 @@
       <option value="alltime">ALLTIME</option>
     </select>
 
-    <button
+    <input
+      :disabled="!save"
+      type="button"
       @click.prevent="handleOptionForm"
       :class="[
         save ? 'btn--success border-2 border-transparent ' : 'border-2 rounded-sm border-white'
       ]"
       class="btn btn-default"
-    >
-      UPDATE
-    </button>
+      value="UPDATE"
+    />
   </form>
 </template>
 

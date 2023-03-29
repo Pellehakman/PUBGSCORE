@@ -1,6 +1,7 @@
 import type { playerModel } from '@/models/models'
 import { useCache } from '@/stores/cacheStore'
-
+import { useGeneralStore } from '@/stores/generalStore'
+const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 class GetPlayers {
   fetchPlayer: playerModel | undefined | any
   error: string | undefined
@@ -13,9 +14,11 @@ class GetPlayers {
     return this.error
   }
 
-  async GetPlayers(data: any) {
+  async GetPlayers() {
+    const generalStore = useGeneralStore()
+
     const cache = useCache()
-    const player = `players?filter[playerIds]=${data}`
+    const player = `players?filter[playerIds]=${parseJSON(generalStore.$state.searchName)}`
     const player_url = `${player}`
 
     await fetch(`${import.meta.env.VITE_API_URL}${player_url}`, {

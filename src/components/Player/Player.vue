@@ -1,7 +1,6 @@
 <script lang="ts" src="./Player"></script>
 
 <template>
-  {{ loading }}
   <article id="playerDropdown" class="card-container overflow-hidden border border-stone-400">
     <div @click="handlePlayerDropdown(1)" class="flex z-50 bg-stone-100 items-center shadow-sm">
       <figure class="h-12 w-12 flex justify-center items-center bg-yellow-500 font-bold">

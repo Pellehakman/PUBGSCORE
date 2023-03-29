@@ -12,7 +12,6 @@ class Lifetime {
     const options = useOptions()
 
     const ids: any[] = []
-
     for (const player in parseJSON(players.$state)) {
       ids.push(parseJSON(players.$state)[player].id)
     }
@@ -20,7 +19,7 @@ class Lifetime {
     const playersString = Object.values([ids]).join(',')
 
     const lifetime_url = `seasons/lifetime/gameMode/${
-      JSON.stringify(options.$state.options.gamemode) || data.gamemode[0].id
+      parseJSON(options.$state.options.gamemode) || data.gamemode[0].id
     }/players?filter[playerIds]=${playersString}`
 
     await fetch(`${import.meta.env.VITE_API_URL}${lifetime_url}`, {
@@ -32,7 +31,6 @@ class Lifetime {
     })
       .then((response) => response.json())
       .then(async (response) => {
-        console.log(response)
         for (let i = 0; i < response.data.length; i++) {
           if (response.data[i]) {
             const data = {
