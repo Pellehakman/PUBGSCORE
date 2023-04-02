@@ -59,7 +59,7 @@ class LastPlayedWith {
 
         generalStore.setSearchName(lastPlayedWith)
         console.log(lastPlayedWith)
-        await $getPlayers.GetPlayers()
+        await $getPlayers.GetPlayers(lastPlayedWith)
       })
   }
 }

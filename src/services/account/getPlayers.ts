@@ -1,51 +1,26 @@
 import type { playerModel } from '@/models/models'
 import { useCache } from '@/stores/cacheStore'
 import { useGeneralStore } from '@/stores/generalStore'
+import { usePlayerStore } from '@/stores/playerStore'
 import { ref } from 'vue'
 import $lastPlayedWith from '../statistics/lastPlayedWith'
 import $matches from '../statistics/lastPlayedWith'
+import $lifetime from '../statistics/lifetime'
+import $activePlayers from './activePlayers'
+import $initPlayers from './initPlayers'
 const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 class GetPlayers {
-  fetchPlayer: playerModel | undefined | any
-  error: string | undefined
-  change: boolean | undefined
-
-  get FetchPlayer() {
-    return this.fetchPlayer
-  }
-  get Error() {
-    return this.error
-  }
-
   async GetPlayers(name?: any) {
     const generalStore = useGeneralStore()
-
+    const cache = useCache()
+    const players = usePlayerStore()
+    // zoom out of the univers instead of zooming in
     const findOut = () => {
-      if (parseJSON(generalStore.$state.lastPlayedWith.length < 1)) {
-        return name
-      } else {
-        return parseJSON(generalStore.$state.lastPlayedWith)
-      }
+      return name
     }
 
-
-
-
-    
-    // HÄR SLUTADE DU--------------------------------------
-
-
-
-
-
-
-
-
-
-    
     const what = findOut()
-    console.log('here', what)
-
+    console.log(what)
     const player = `players?filter[playerNames]=${what}`
     const player_url = `${player}`
 
@@ -59,92 +34,32 @@ class GetPlayers {
       .then((response) => response.json())
 
       .then(async (response) => {
-        console.log(response)
-        if (response.data.length === 1) {
+        if (generalStore.$state.lastPlayedWith < 1) {
           $lastPlayedWith.GetLastPlayedWith(response)
-        } else {
-          console.log('hej')
+        }
+
+        for (let i = 0; i < response.data.length; i++) {
+          if (response.data[i]) {
+            const data = {
+              id: response.data[i].id,
+              name: response.data[i].attributes.name,
+              matches: response.data[i].relationships.matches.data,
+              lifetime: [],
+              seasons: []
+            }
+            cache.letsCache(data)
+          }
         }
       })
-      // .then(async (response) => {
-      //   if (response.data[0]) {
-      //     const data = {
-      //       id: response.data[0].id,
-      //       name: response.data[0].attributes.name,
-      //       matches: response.data[0].relationships.matches.data,
-      //       lifetime: [],
-      //       seasons: []
-      //     }
-      //     cache.letsCache(data)
-      //   }
-      //   if (response.data[1]) {
-      //     const data = {
-      //       id: response.data[1].id,
-      //       name: response.data[1].attributes.name,
-      //       matches: response.data[1].relationships.matches.data,
-      //       lifetime: [],
-      //       seasons: []
-      //     }
 
-      //     cache.letsCache(data)
-      //   }
-      //   if (response.data[2]) {
-      //     const data = {
-      //       id: response.data[2].id,
-      //       name: response.data[2].attributes.name,
-      //       matches: response.data[2].relationships.matches.data,
-      //       lifetime: [],
-      //       seasons: []
-      //     }
-
-      //     cache.letsCache(data)
-      //   }
-      //   if (response.data[3]) {
-      //     const data = {
-      //       id: response.data[3].id,
-      //       name: response.data[3].attributes.name,
-      //       matches: response.data[3].relationships.matches.data,
-      //       lifetime: [],
-      //       seasons: []
-      //     }
-
-      //     cache.letsCache(data)
-      //   }
-      // })
-      // .then(() => {
-      //   $lifetime.GetLifetime()
-      // })
+      .then(async () => {
+        // await $initPlayers.setInit()
+        // await $activePlayers.activePlayers(what)
+      })
 
       .catch((err) => {
         console.log(err)
       })
-    //     .then(async (response) => {
-    //       if (response.errors) {
-    //         console.log('ERROR: service:getPlayer.ts', response.errors)
-    //         this.error = await response.errors[0].detail
-    //       } else {
-    //         console.log(response)
-    //         const data = {
-    //           id: response.data[0].id,
-    //           name: response.data[0].attributes.name,
-    //           matches: response.data[0].relationships.matches.data,
-    //           lifetime: [],
-    //           lastPlayedWith: [],
-    //           seasons: []
-    //         }
-    //         cache.letsCache(data)
-    //         changeStore.isChange(true)
-    //         await $lifetime.GetLifetime()
-    //         await $matches.GetMatches()
-
-    //         this.error = ''
-    //       }
-    //     })
-
-    // .catch((err) => {
-    //   console.log(err)
-    // })
-    // }
   }
 }
 

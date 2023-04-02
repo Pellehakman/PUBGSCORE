@@ -4,52 +4,58 @@ import $lifetime from '../statistics/lifetime'
 const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 
 class InitPlayers {
-  async setInit(search: any) {
-    const cache = useCache()
+  async setInit(lastPlayedWith: any) {
+    console.log(lastPlayedWith)
+    // const cache = useCache()
     const players = usePlayerStore()
-    const toCache = parseJSON(cache.$state.cacheList)
+    const toCache = lastPlayedWith
 
-    for (let i = 0; i < toCache.length; i++) {
-      if (toCache[i].name === search) {
-        players.setPlayer1({ name: toCache[i].name, id: toCache[i].id })
-      }
-    }
-
-    if (players.$state.player2.length < 1) {
+    if (players.$state.player1.length < 1) {
       for (let i = 0; i < toCache.length; i++) {
         if (
-          toCache[i].name !== players.$state.player1.name &&
-          toCache[i].name !== players.$state.player3.name &&
-          toCache[i].name !== players.$state.player4.name
+          toCache[i] !== players.$state.player2.name &&
+          toCache[i] !== players.$state.player3.name &&
+          toCache[i] !== players.$state.player4.name
         ) {
-          await players.setPlayer2({ name: toCache[i].name, id: toCache[i].id })
+          await players.setPlayer1({ name: toCache[i], id: toCache[i].id })
         }
       }
     }
-    if (players.$state.player3.length < 1) {
-      for (let i = 0; i < toCache.length; i++) {
-        if (
-          toCache[i].name !== players.$state.player1.name &&
-          toCache[i].name !== players.$state.player2.name &&
-          toCache[i].name !== players.$state.player4.name
-        ) {
-          await players.setPlayer3({ name: toCache[i].name, id: toCache[i].id })
-        }
-      }
-    }
+    // if (players.$state.player2.length < 1) {
+    //   for (let i = 0; i < toCache.length; i++) {
+    //     if (
+    //       toCache[i].name !== players.$state.player1.name &&
+    //       toCache[i].name !== players.$state.player3.name &&
+    //       toCache[i].name !== players.$state.player4.name
+    //     ) {
+    //       await players.setPlayer2({ name: toCache[i].name, id: toCache[i].id })
+    //     }
+    //   }
+    // }
+    // if (players.$state.player3.length < 1) {
+    //   for (let i = 0; i < toCache.length; i++) {
+    //     if (
+    //       toCache[i].name !== players.$state.player1.name &&
+    //       toCache[i].name !== players.$state.player2.name &&
+    //       toCache[i].name !== players.$state.player4.name
+    //     ) {
+    //       await players.setPlayer3({ name: toCache[i].name, id: toCache[i].id })
+    //     }
+    //   }
+    // }
 
-    if (players.$state.player4.length < 1) {
-      for (let i = 0; i < toCache.length; i++) {
-        if (
-          toCache[i].name !== players.$state.player1.name &&
-          toCache[i].name !== players.$state.player2.name &&
-          toCache[i].name !== players.$state.player3.name
-        ) {
-          await players.setPlayer4({ name: toCache[i].name, id: toCache[i].id })
-        }
-      }
-    }
-    await $lifetime.GetLifetime()
+    // if (players.$state.player4.length < 1) {
+    //   for (let i = 0; i < toCache.length; i++) {
+    //     if (
+    //       toCache[i].name !== players.$state.player1.name &&
+    //       toCache[i].name !== players.$state.player2.name &&
+    //       toCache[i].name !== players.$state.player3.name
+    //     ) {
+    //       await players.setPlayer4({ name: toCache[i].name, id: toCache[i].id })
+    //     }
+    //   }
+    // }
+    // await $lifetime.GetLifetime()
   }
 }
 

@@ -4,13 +4,15 @@ import { useOptions } from '@/stores/options'
 import $activePlayers from '@/services/account/activePlayers'
 import $getPlayers from '@/services/account/getPlayers'
 import $lifetime from '@/services/statistics/lifetime'
-
+import { usePlayerStore } from '@/stores/playerStore'
 export default defineComponent({
   name: 'OptionBar',
   setup() {
+    const players = usePlayerStore()
     const data = seasonOptions
     const options = useOptions()
     const save = ref(false)
+
     onMounted(() => {
       if (options.$state.options.length < 1) {
         handleOptionForm()
@@ -80,6 +82,9 @@ export default defineComponent({
         alltime: alltime.value
       }
       options.storeOptions(data)
+      if (players.$state.player1.length >= 1) {
+        await $lifetime.GetLifetime()
+      }
 
       // await $lifetime.GetLifetime()
 

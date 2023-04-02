@@ -1,23 +1,11 @@
 import type { playerModel } from '@/models/models'
-import { useChangeStore } from '@/stores/changeStore'
 import { useCache } from '@/stores/cacheStore'
+import { usePlayerStore } from '@/stores/playerStore'
+import $activePlayers from './activePlayers'
 import $lifetime from '../statistics/lifetime'
-import $matches from '../statistics/lastPlayedWith'
-import $getPlayers from './getPlayers'
 
 class GetPlayer {
-  fetchPlayer: playerModel | undefined | any
-  error: string | undefined
-  change: boolean | undefined
-
-  get FetchPlayer() {
-    return this.fetchPlayer
-  }
-  get Error() {
-    return this.error
-  }
-
-  async GetPlayer(playerName: string) {
+  async GetPlayer(playerName: string, num: number) {
     const cache = useCache()
     const player = `players?filter[playerNames]=${playerName}`
     const player_url = `${player}`
@@ -26,6 +14,7 @@ class GetPlayer {
       JSON.parse(JSON.stringify(cache.$state.cacheList)).find((f: any) => f.name === playerName)
     ) {
       console.log('PLAYER FOUND')
+      $activePlayers.activePlayers(playerName, num)
     } else {
       console.log('NO PLAYER, LETS ADD')
       await fetch(`${import.meta.env.VITE_API_URL}${player_url}`, {
@@ -39,10 +28,16 @@ class GetPlayer {
         .then(async (response) => {
           if (response.errors) {
             console.log('ERROR: service:getPlayer.ts', response.errors)
-            this.error = await response.errors[0].detail
           } else {
-            await $matches.GetMatches(response.data[0])
-            this.error = ''
+            const data = {
+              id: response.data[0].id,
+              name: response.data[0].attributes.name,
+              matches: response.data[0].relationships.matches.data,
+              lifetime: [],
+              seasons: []
+            }
+            cache.letsCache(data)
+            $activePlayers.activePlayers(playerName, num)
           }
         })
 

@@ -2,7 +2,7 @@ import $lifetime from '@/services/statistics/lifetime'
 import { collection } from 'firebase/firestore'
 import { defineStore } from 'pinia'
 
-export const usePlayerStore = defineStore('fpeladsyers', {
+export const usePlayerStore = defineStore('fpedladsyers', {
   state: () => ({
     player1: [] as any,
     player2: [] as any,

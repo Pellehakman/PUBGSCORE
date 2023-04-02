@@ -7,6 +7,7 @@ import { usePlayerStore } from '@/stores/playerStore'
 import { defineComponent, ref } from 'vue'
 import $activePlayers from '@/services/account/activePlayers'
 import $getPlayers from '@/services/account/getPlayers'
+import $lifetime from '@/services/statistics/lifetime'
 
 export default defineComponent({
   name: 'Player',
@@ -50,25 +51,17 @@ export default defineComponent({
     const loading = ref(false)
 
     const getPlayer = async () => {
-      // loading.value = true
-      // const data = parseJSON(cache.$state.cacheList).find((f: any) => f.name === playerSearch.value)
-      // if (data) {
-      //   players.setPlayerOne(data)
-      // } else {
+      await $getPlayer.GetPlayer(playerSearch.value, 1)
 
-      await $getPlayers.GetPlayers(playerSearch.value)
-    
-
-      // await $activePlayers.activePlayers()
-      // await $activePlayers.setInit()
       // await $lifetime.GetLifetime()
-      //   players.setPlayerOne(
-      //     parseJSON(cache.$state.cacheList).find((f: any) => f.name === playerSearch.value)
-      //   )
-      // }
-      // if (parseJSON(cache.$state.cacheList.length > 1)) {
-      //   players.setPlayerTwo(parseJSON(cache.$state.cacheList.at(0)))
-      // }
+
+      loading.value = false
+    }
+    const getPlayer2 = async () => {
+      await $getPlayer.GetPlayer(playerSearch.value, 2)
+
+      // await $lifetime.GetLifetime()
+
       loading.value = false
     }
 
@@ -86,6 +79,7 @@ export default defineComponent({
       playerSearch,
       playerName,
       getPlayer,
+      getPlayer2,
       players
     }
   }

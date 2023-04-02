@@ -92,7 +92,7 @@
           <label for="player" class="input-label">PLAYER NAME</label>
           <button class="input-icon-sm z-40">
             <font-awesome-icon
-              @click="getPlayer"
+              @click="getPlayer2"
               class="peer icon-sm bg-white"
               icon="fa-solid fa-magnifying-glass"
             />
