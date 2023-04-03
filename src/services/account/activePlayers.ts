@@ -1,6 +1,7 @@
 import { useCache } from '@/stores/cacheStore'
 import { useOptions } from '@/stores/options'
 import { usePlayerStore } from '@/stores/playerStore'
+import $seasons from '../seasons/seasons'
 import $lifetime from '../statistics/lifetime'
 const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 
@@ -14,31 +15,29 @@ class ActivePlayers {
       return data
     }
     const data = what()
+    const sendData = {
+      player: num,
+      id: await data.id,
+      name: await data.name
+    }
 
-    console.log(data)
     switch (num) {
       case 1:
-        players.setPlayer1(data)
+        await players.setPlayer1(sendData)
         break
       case 2:
-        players.setPlayer2(data)
+        await players.setPlayer2(sendData)
         break
       case 3:
-        players.setPlayer3(data)
+        await players.setPlayer3(sendData)
         break
       case 4:
-        players.setPlayer4(data)
+        await players.setPlayer4(sendData)
         break
     }
 
-    $lifetime.GetLifetime()
-    // const data = parseJSON(cache.$state.cacheList).find(
-    //   (f: any) => f.name === players.$state.player1.name
-    // )
-
-    // if (options.$state.options.alltime === 'alltime') {
-    //   return data.lifetime.find((f: any) => f.gamemode === options.$state.options.gamemode)
-    // }
+    // await $lifetime.GetLifetime()
+    // await $seasons.GetSeasonsStats()
   }
 }
 

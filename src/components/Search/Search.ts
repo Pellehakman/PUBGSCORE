@@ -1,5 +1,6 @@
 import PlayerName from '@/components/PlayerName/PlayerName.vue'
 import { useCache } from '@/stores/cacheStore'
+import { useDisplayPlayerStore } from '@/stores/display/displayPlayer1'
 import { useOptions } from '@/stores/options'
 import { usePlayerStore } from '@/stores/playerStore'
 
@@ -13,6 +14,7 @@ export default defineComponent({
     const options = useOptions()
     const player = usePlayerStore()
     // cache.$reset()
+    const displayPlayer1 = useDisplayPlayerStore()
     const pubgError = ref('')
 
     const handleError = (fromError: string) => {
@@ -28,6 +30,7 @@ export default defineComponent({
       cache.$reset()
       options.$reset()
       player.$reset()
+      displayPlayer1.$reset()
     }
 
     return {

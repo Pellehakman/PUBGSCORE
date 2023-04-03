@@ -1,4 +1,3 @@
-import $activePlayers from '@/services/account/activePlayers'
 import { defineStore } from 'pinia'
 
 export const useOptions = defineStore('options', {
@@ -9,7 +8,7 @@ export const useOptions = defineStore('options', {
   actions: {
     async storeOptions(data: any) {
       this.options = data
-      // await $activePlayers.activePlayers()
+      console.log(data)
     }
   }
 })

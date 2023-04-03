@@ -5,6 +5,7 @@ import $activePlayers from '@/services/account/activePlayers'
 import $getPlayers from '@/services/account/getPlayers'
 import $lifetime from '@/services/statistics/lifetime'
 import { usePlayerStore } from '@/stores/playerStore'
+import $seasons from '@/services/seasons/seasons'
 export default defineComponent({
   name: 'OptionBar',
   setup() {
@@ -72,8 +73,6 @@ export default defineComponent({
 
     const isActive = ref(false)
 
-    // HÄR SLUTADE DU. LIFETIME KAN INTE LÄSA IN OPTIONFORM DATA BEFORE LIFETIME RUNS
-
     const handleOptionForm = async () => {
       const data = {
         gamemode: gamemode.value,
@@ -84,11 +83,13 @@ export default defineComponent({
       options.storeOptions(data)
       if (players.$state.player1.length >= 1) {
         await $lifetime.GetLifetime()
+        await $seasons.GetSeasonsStats()
       }
 
-      // await $lifetime.GetLifetime()
+      await $lifetime.GetLifetime()
+      await $seasons.GetSeasonsStats()
 
-      console.log('cunt')
+      console.log('optionbar run')
     }
 
     return {
