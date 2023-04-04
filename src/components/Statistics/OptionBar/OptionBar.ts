@@ -85,9 +85,8 @@ export default defineComponent({
         await $lifetime.GetLifetime()
         await $seasons.GetSeasonsStats()
       }
-
-      await $lifetime.GetLifetime()
       await $seasons.GetSeasonsStats()
+      await $lifetime.GetLifetime()
 
       console.log('optionbar run')
     }

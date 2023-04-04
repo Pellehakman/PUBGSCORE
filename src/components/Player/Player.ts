@@ -12,9 +12,9 @@ export default defineComponent({
   async setup() {
     const players = usePlayerStore()
     const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
-    const activePlayer = ref((await players.$state.player1.name) || 'SEARCH FOR PLAYER')
+    const activePlayer = ref('SEARCH FOR PLAYER')
     const cache = useCache()
-    const displayPlayer1 = useDisplayPlayerStore()
+    const displayPlayer = useDisplayPlayerStore()
 
     const playerName = ref()
     const options = useOptions()
@@ -78,7 +78,7 @@ export default defineComponent({
       getPlayer2,
       players,
       disp,
-      displayPlayer1
+      displayPlayer
     }
   }
 })

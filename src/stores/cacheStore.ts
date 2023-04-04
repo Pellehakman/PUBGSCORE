@@ -37,11 +37,16 @@ export const useCache = defineStore('efid', {
       }
     },
     letsCacheSeasons(data: any) {
-      const newArr = JSON.parse(JSON.stringify(this.$state.cacheList)).map((f: any) => f.seasons)
-      if (newArr.find((arr: any) => arr.some((obj: any) => obj.seasonId === data.seasonId))) {
-        console.log('data with same id')
+      const foundSeason = this.cacheList
+        .find((f: any) => f.id === data.id)
+        .seasons.find((g: any) => g.seasonId === data.seasonId)
+      const foundGamemode = this.cacheList
+        .find((f: any) => f.id === data.id)
+        .seasons.find((g: any) => g.gamemode === data.gamemode)
+
+      if (foundSeason && foundGamemode) {
+        console.log('already data')
       } else {
-        console.log('nope, lets add')
         this.cacheList.find((f: any) => f.id === data.id).seasons.push({ ...data })
       }
     }

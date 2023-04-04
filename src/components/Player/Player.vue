@@ -54,7 +54,7 @@
       </div>
     </Transition>
     <div v-if="players.$state.player1" class="flex flex-col">
-      {{ displayPlayer1.$state.displayPlayer1 }}
+      {{ displayPlayer.$state.displayPlayer1 }}
     </div>
   </article>
 
@@ -111,7 +111,7 @@
       </div>
     </Transition>
     <div v-if="players.$state.player2" class="flex flex-col">
-      {{ players.$state.player2.name }}
+      {{ displayPlayer.$state.displayPlayer2 }}
     </div>
   </article>
 

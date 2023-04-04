@@ -2,8 +2,8 @@ import { useCache } from '@/stores/cacheStore'
 import { useOptions } from '@/stores/options'
 import seasonOptions from '@/services/seasons/seasons.json'
 import { usePlayerStore } from '@/stores/playerStore'
-import $player1 from '../players/displayPlayer1'
-import $displayPlayer1 from '../players/displayPlayer1'
+import $player1 from '../players/displayPlayer'
+import $displayPlayer from '../players/displayPlayer'
 const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 
 class Lifetime {
@@ -53,7 +53,7 @@ class Lifetime {
         }
       })
     // <--- här slutade du, hämta "num" i getplauer
-    await $displayPlayer1.getPlayer1()
+    await $displayPlayer.getPlayer()
   }
 }
 

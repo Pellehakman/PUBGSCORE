@@ -1,19 +1,12 @@
-import type { playerModel } from '@/models/models'
 import { useCache } from '@/stores/cacheStore'
 import { useGeneralStore } from '@/stores/generalStore'
 import { usePlayerStore } from '@/stores/playerStore'
-import { ref } from 'vue'
 import $lastPlayedWith from '../statistics/lastPlayedWith'
-import $matches from '../statistics/lastPlayedWith'
-import $lifetime from '../statistics/lifetime'
-import $activePlayers from './activePlayers'
-import $initPlayers from './initPlayers'
-const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
+
 class GetPlayers {
   async GetPlayers(name?: any) {
     const generalStore = useGeneralStore()
     const cache = useCache()
-    const players = usePlayerStore()
     // zoom out of the univers instead of zooming in
     const findOut = () => {
       return name

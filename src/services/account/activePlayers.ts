@@ -1,8 +1,5 @@
 import { useCache } from '@/stores/cacheStore'
-import { useOptions } from '@/stores/options'
 import { usePlayerStore } from '@/stores/playerStore'
-import $seasons from '../seasons/seasons'
-import $lifetime from '../statistics/lifetime'
 const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 
 class ActivePlayers {
