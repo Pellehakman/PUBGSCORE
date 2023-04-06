@@ -3,15 +3,17 @@ import { useCache } from '@/stores/cacheStore'
 import { useOptions } from '@/stores/options'
 import { usePlayerStore } from '@/stores/playerStore'
 
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, watch } from 'vue'
 import { useDisplayPlayerStore } from '@/stores/display/displayPlayer1'
+import { $parseHelper } from '@/helpers/ParseHelper'
+import { $updateHelper } from '@/helpers/UpdateHelper'
 
 export default defineComponent({
   name: 'Player',
   props: { hej: Number },
   async setup() {
     const players = usePlayerStore()
-    const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
+
     const activePlayer = ref('SEARCH FOR PLAYER')
     const cache = useCache()
     const displayPlayer = useDisplayPlayerStore()
@@ -56,13 +58,16 @@ export default defineComponent({
       loading.value = true
       await $getPlayer.GetPlayer(playerSearch.value, 1)
       loading.value = false
+      $updateHelper.updateSearch()
     }
     const getPlayer2 = async () => {
       loading.value = true
       await $getPlayer.GetPlayer(playerSearch.value, 2)
       loading.value = false
+      $updateHelper.updateSearch()
     }
 
+    console.log($parseHelper.parseJSON(displayPlayer.$state.displayPlayer1))
     return {
       loading,
       cache,

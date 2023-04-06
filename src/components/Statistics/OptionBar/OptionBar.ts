@@ -6,6 +6,7 @@ import $getPlayers from '@/services/account/getPlayers'
 import $lifetime from '@/services/statistics/lifetime'
 import { usePlayerStore } from '@/stores/playerStore'
 import $seasons from '@/services/seasons/seasons'
+import { $updateHelper } from '@/helpers/UpdateHelper'
 export default defineComponent({
   name: 'OptionBar',
   setup() {
@@ -80,13 +81,12 @@ export default defineComponent({
         season: seasons.value,
         alltime: alltime.value
       }
-      options.storeOptions(data)
-      if (players.$state.player1.length >= 1) {
-        await $lifetime.GetLifetime()
-        await $seasons.GetSeasonsStats()
-      }
-      await $seasons.GetSeasonsStats()
-      await $lifetime.GetLifetime()
+      await options.storeOptions(data)
+      // if (players.$state.player1.length >= 1) {
+      //   await $lifetime.GetLifetime()
+      //   await $seasons.GetSeasonsStats()
+      // }
+      $updateHelper.updateSearch()
 
       console.log('optionbar run')
     }

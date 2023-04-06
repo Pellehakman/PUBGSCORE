@@ -28,55 +28,60 @@ class DisplayPlayer {
     }
 
     const findPlayer1 = async () => {
-      if (options.$state.options.alltime === 'alltime') {
+      if ((await options.$state.options.alltime) === 'alltime') {
         const data = parseJSON(cache.$state.cacheList).find(
           (f: any) => f.name === players.$state.player1.name
         )
-        return await calcLife(data)
+        // Check if data is undefined
+        if (data !== undefined) {
+          return await calcLife(data)
+        } else {
+          console.log('No data found for player 1!')
+          return null
+        }
       } else if (options.$state.options.alltime === 'season') {
         const data = parseJSON(cache.$state.cacheList).find(
           (f: any) => f.name === players.$state.player1.name
         )
-        return await calcSeason(data)
+        // Check if data is undefined
+        if (data !== undefined) {
+          return await calcSeason(data)
+        } else {
+          console.log('No data found for player 1!')
+          return null
+        }
       }
     }
+
     displayPlayers.setDisplayPlayer1(findPlayer1())
 
     const findPlayer2 = async () => {
-      if (options.$state.options.alltime === 'alltime') {
+      if ((await options.$state.options.alltime) === 'alltime') {
         const data = parseJSON(cache.$state.cacheList).find(
           (f: any) => f.name === players.$state.player2.name
         )
-        return await calcLife(data)
+        // Check if data is undefined
+        if (data !== undefined) {
+          return await calcLife(data)
+        } else {
+          console.log('No data found for player 2!')
+          return null
+        }
       } else if (options.$state.options.alltime === 'season') {
         const data = parseJSON(cache.$state.cacheList).find(
           (f: any) => f.name === players.$state.player2.name
         )
-        return await calcSeason(data)
+        // Check if data is undefined
+        if (data !== undefined) {
+          return await calcSeason(data)
+        } else {
+          console.log('No data found for player 2!')
+          return null
+        }
       }
     }
-    displayPlayers.setDisplayPlayer2(findPlayer2())
 
-    // if (players.$state.player2) {
-    //   const findPlayer2 = async () => {
-    //     const data = parseJSON(cache.$state.cacheList).find(
-    //       (f: any) => f.name === players.$state.player2.name
-    //     )
-    //     if (options.$state.options.alltime === 'alltime') {
-    //       return data.lifetime.find((f: any) => f.gamemode === options.$state.options.gamemode)
-    //         .gameModeStats[options.$state.options.gamemode]
-    //     } else if (options.$state.options.alltime === 'season') {
-    //       return parseJSON(cache.$state.cacheList)
-    //         .find((f: any) => f.id === data.id)
-    //         .seasons.find(
-    //           (g: any) =>
-    //             g.seasonId === options.$state.options.season &&
-    //             g.gamemode === options.$state.options.gamemode
-    //         )
-    //     }
-    //   }
-    //   displayPlayers.setDisplayPlayer2(findPlayer2())
-    // }
+    displayPlayers.setDisplayPlayer2(findPlayer2())
   }
 }
 

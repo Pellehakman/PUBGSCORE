@@ -25,7 +25,7 @@ export default defineComponent({
       loading.value = true
       console.log(JSON.parse(JSON.stringify(cache.$state.cacheList.at(-1))).id)
       // await $seasons.GetSeasonsStats(JSON.parse(JSON.stringify(cache.$state.cacheList.at(-1))).id)
-      await $seasons.GetSeasonsStats()
+      // await $seasons.GetSeasonsStats()
       // await $seasons.GetSeasonsStats(cache.cacheList)
       // if (JSON.parse(JSON.stringify(useChange.change)) === true) {
       //   await $seasons.GetSeasonsStats(userStore.user.id)

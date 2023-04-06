@@ -33,8 +33,7 @@ class ActivePlayers {
         break
     }
 
-    // await $lifetime.GetLifetime()
-    // await $seasons.GetSeasonsStats()
+
   }
 }
 
