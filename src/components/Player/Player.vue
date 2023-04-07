@@ -6,7 +6,9 @@
       <figure class="h-12 w-12 flex justify-center items-center bg-yellow-500 font-bold">
         <span class="text-white text-">1</span>
       </figure>
-      <span class="font-bold text-sm px-2 mr-auto">{{ activePlayer }}</span>
+      <span class="font-bold text-sm px-2 mr-auto">{{
+        players.$state.player1?.name || 'SEARCH FOR PLAYER'
+      }}</span>
 
       <div class="flex justify-center items-center pr-4 h-full">
         <font-awesome-icon
@@ -54,7 +56,7 @@
       </div>
     </Transition>
     <div v-if="players.$state.player1" class="flex flex-col">
-      {{ displayPlayer.$state.displayPlayer1 }}
+      {{ displayPlayer?.p1 }}
     </div>
   </article>
 
@@ -63,7 +65,9 @@
       <figure class="h-12 w-12 flex justify-center items-center bg-orange-600 font-bold">
         <span class="text-white text-">2</span>
       </figure>
-      <span class="font-bold text-sm px-2 mr-auto">{{ activePlayer }}</span>
+      <span class="font-bold text-sm px-2 mr-auto">{{
+        players.$state.player2?.name || 'SEARCH FOR PLAYER'
+      }}</span>
 
       <div class="flex justify-center items-center pr-4 h-full">
         <font-awesome-icon
@@ -111,7 +115,75 @@
       </div>
     </Transition>
     <div v-if="players.$state.player2" class="flex flex-col">
-      {{ displayPlayer.$state.displayPlayer2 }}
+      <span class="flex justify-between px-4 pt-4">
+        <p>Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.kills }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Wins</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.wins }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Losses</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.losses }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Assists</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.assists }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>dBNOs</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.dBNOs }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Damage</p>
+        <p class="font-bold">{{ Math.round(displayPlayer?.p2?.damageDealt) }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>headshotKills</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.headshotKills }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>heals</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.heals }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>roundsPlayed</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.roundsPlayed }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>suicides</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.suicides }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>teamKills</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.teamKills }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>revives</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.revives }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Most kills/game</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.roundMostKills }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>boosts</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.boosts }}</p>
+      </span>
     </div>
   </article>
 
@@ -120,7 +192,9 @@
       <figure class="h-12 w-12 flex justify-center items-center bg-blue-700 font-bold">
         <span class="text-white text-">3</span>
       </figure>
-      <span class="font-bold text-sm px-2 mr-auto">{{ activePlayer }}</span>
+      <span class="font-bold text-sm px-2 mr-auto">{{
+        players.$state.player3?.name || 'SEARCH FOR PLAYER'
+      }}</span>
 
       <div class="flex justify-center items-center pr-4 h-full">
         <font-awesome-icon
@@ -176,7 +250,9 @@
       <figure class="h-12 w-12 flex justify-center items-center bg-green-800 font-bold">
         <span class="text-white text-">4</span>
       </figure>
-      <span class="font-bold text-sm px-2 mr-auto">{{ activePlayer }}</span>
+      <span class="font-bold text-sm px-2 mr-auto">{{
+        players.$state.player4?.name || 'SEARCH FOR PLAYER'
+      }}</span>
 
       <div class="flex justify-center items-center pr-4 h-full">
         <font-awesome-icon

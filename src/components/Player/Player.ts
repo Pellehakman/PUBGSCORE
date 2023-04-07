@@ -14,7 +14,6 @@ export default defineComponent({
   async setup() {
     const players = usePlayerStore()
 
-    const activePlayer = ref('SEARCH FOR PLAYER')
     const cache = useCache()
     const displayPlayer = useDisplayPlayerStore()
 
@@ -67,11 +66,9 @@ export default defineComponent({
       $updateHelper.updateSearch()
     }
 
-    console.log($parseHelper.parseJSON(displayPlayer.$state.displayPlayer1))
     return {
       loading,
       cache,
-      activePlayer,
       handlePlayerDropdown,
       dropdown1,
       dropdown2,
