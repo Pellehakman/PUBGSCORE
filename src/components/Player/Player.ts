@@ -1,11 +1,9 @@
 import $getPlayer from '@/services/account/getPlayer'
 import { useCache } from '@/stores/cacheStore'
-import { useOptions } from '@/stores/options'
 import { usePlayerStore } from '@/stores/playerStore'
-
-import { defineComponent, ref, watch } from 'vue'
+import { defineComponent, ref } from 'vue'
 import { useDisplayPlayerStore } from '@/stores/display/displayPlayer1'
-import { $parseHelper } from '@/helpers/ParseHelper'
+
 import { $updateHelper } from '@/helpers/UpdateHelper'
 
 export default defineComponent({
@@ -18,7 +16,6 @@ export default defineComponent({
     const displayPlayer = useDisplayPlayerStore()
 
     const playerName = ref()
-    const options = useOptions()
     const disp = ref()
 
     const playerSearch = ref('')
@@ -65,6 +62,18 @@ export default defineComponent({
       loading.value = false
       $updateHelper.updateSearch()
     }
+    const getPlayer3 = async () => {
+      loading.value = true
+      await $getPlayer.GetPlayer(playerSearch.value, 3)
+      loading.value = false
+      $updateHelper.updateSearch()
+    }
+    const getPlayer4 = async () => {
+      loading.value = true
+      await $getPlayer.GetPlayer(playerSearch.value, 4)
+      loading.value = false
+      $updateHelper.updateSearch()
+    }
 
     return {
       loading,
@@ -78,6 +87,8 @@ export default defineComponent({
       playerName,
       getPlayer,
       getPlayer2,
+      getPlayer3,
+      getPlayer4,
       players,
       disp,
       displayPlayer

@@ -22,6 +22,12 @@ class Seasons {
       if (players.$state.player2.id) {
         ids.push(players.$state.player2.id)
       }
+      if (players.$state.player3.id) {
+        ids.push(players.$state.player3.id)
+      }
+      if (players.$state.player4.id) {
+        ids.push(players.$state.player4.id)
+      }
       return ids
     }
 

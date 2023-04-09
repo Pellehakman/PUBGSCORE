@@ -55,8 +55,67 @@
         </div>
       </div>
     </Transition>
-    <div v-if="players.$state.player1" class="flex flex-col">
-      {{ displayPlayer?.p1 }}
+    <div v-if="players.$state.player1" class="flex flex-col py-4">
+      <span class="flex justify-between px-4">
+        <p>Wins</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.wins }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Losses</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.losses }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.kills }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>dBNOs</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.dBNOs }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Headshot Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.headshotKills }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Assists</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.assists }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Damage</p>
+        <p class="font-bold">{{ Math.round(displayPlayer?.p1?.damageDealt) }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Suicides</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.suicides }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Team Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.teamKills }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Most Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.roundMostKills }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Heals</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.heals }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Revives</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.revives }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Boosts</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.boosts }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Total Matches</p>
+        <p class="font-bold">{{ displayPlayer?.p1?.roundsPlayed }}</p>
+      </span>
     </div>
   </article>
 
@@ -114,20 +173,26 @@
         </div>
       </div>
     </Transition>
-    <div v-if="players.$state.player2" class="flex flex-col">
-      <span class="flex justify-between px-4 pt-4">
-        <p>Kills</p>
-        <p class="font-bold">{{ displayPlayer?.p2?.kills }}</p>
-      </span>
-
+    <div v-if="players.$state.player2" class="flex flex-col py-4">
       <span class="flex justify-between px-4">
         <p>Wins</p>
         <p class="font-bold">{{ displayPlayer?.p2?.wins }}</p>
       </span>
-
       <span class="flex justify-between px-4">
         <p>Losses</p>
         <p class="font-bold">{{ displayPlayer?.p2?.losses }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.kills }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>dBNOs</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.dBNOs }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Headshot Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.headshotKills }}</p>
       </span>
 
       <span class="flex justify-between px-4">
@@ -136,53 +201,38 @@
       </span>
 
       <span class="flex justify-between px-4">
-        <p>dBNOs</p>
-        <p class="font-bold">{{ displayPlayer?.p2?.dBNOs }}</p>
-      </span>
-
-      <span class="flex justify-between px-4">
         <p>Damage</p>
         <p class="font-bold">{{ Math.round(displayPlayer?.p2?.damageDealt) }}</p>
       </span>
-
       <span class="flex justify-between px-4">
-        <p>headshotKills</p>
-        <p class="font-bold">{{ displayPlayer?.p2?.headshotKills }}</p>
-      </span>
-
-      <span class="flex justify-between px-4">
-        <p>heals</p>
-        <p class="font-bold">{{ displayPlayer?.p2?.heals }}</p>
-      </span>
-
-      <span class="flex justify-between px-4">
-        <p>roundsPlayed</p>
-        <p class="font-bold">{{ displayPlayer?.p2?.roundsPlayed }}</p>
-      </span>
-
-      <span class="flex justify-between px-4">
-        <p>suicides</p>
+        <p>Suicides</p>
         <p class="font-bold">{{ displayPlayer?.p2?.suicides }}</p>
       </span>
 
       <span class="flex justify-between px-4">
-        <p>teamKills</p>
+        <p>Team Kills</p>
         <p class="font-bold">{{ displayPlayer?.p2?.teamKills }}</p>
       </span>
-
       <span class="flex justify-between px-4">
-        <p>revives</p>
-        <p class="font-bold">{{ displayPlayer?.p2?.revives }}</p>
-      </span>
-
-      <span class="flex justify-between px-4">
-        <p>Most kills/game</p>
+        <p>Most Kills</p>
         <p class="font-bold">{{ displayPlayer?.p2?.roundMostKills }}</p>
       </span>
+      <span class="flex justify-between px-4">
+        <p>Heals</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.heals }}</p>
+      </span>
 
       <span class="flex justify-between px-4">
-        <p>boosts</p>
+        <p>Revives</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.revives }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Boosts</p>
         <p class="font-bold">{{ displayPlayer?.p2?.boosts }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Total Matches</p>
+        <p class="font-bold">{{ displayPlayer?.p2?.roundsPlayed }}</p>
       </span>
     </div>
   </article>
@@ -223,7 +273,7 @@
           <label for="player" class="input-label">PLAYER NAME</label>
           <button class="input-icon-sm z-40">
             <font-awesome-icon
-              @click="getPlayer"
+              @click="getPlayer3"
               class="peer icon-sm bg-white"
               icon="fa-solid fa-magnifying-glass"
             />
@@ -241,8 +291,67 @@
         </div>
       </div>
     </Transition>
-    <div v-if="players.$state.player3" class="flex flex-col">
-      {{ players.$state.player3.name }}
+    <div v-if="players.$state.player3" class="flex flex-col py-4">
+      <span class="flex justify-between px-4">
+        <p>Wins</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.wins }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Losses</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.losses }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.kills }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>dBNOs</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.dBNOs }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Headshot Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.headshotKills }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Assists</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.assists }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Damage</p>
+        <p class="font-bold">{{ Math.round(displayPlayer?.p3?.damageDealt) }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Suicides</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.suicides }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Team Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.teamKills }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Most Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.roundMostKills }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Heals</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.heals }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Revives</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.revives }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Boosts</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.boosts }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Total Matches</p>
+        <p class="font-bold">{{ displayPlayer?.p3?.roundsPlayed }}</p>
+      </span>
     </div>
   </article>
   <article id="playerDropdown" class="card-container overflow-hidden border border-stone-400">
@@ -281,7 +390,7 @@
           <label for="player" class="input-label">PLAYER NAME</label>
           <button class="input-icon-sm z-40">
             <font-awesome-icon
-              @click="getPlayer"
+              @click="getPlayer4"
               class="peer icon-sm bg-white"
               icon="fa-solid fa-magnifying-glass"
             />
@@ -299,8 +408,67 @@
         </div>
       </div>
     </Transition>
-    <div v-if="players.$state.player4" class="flex flex-col">
-      {{ players.$state.player4.name }}
+    <div v-if="players.$state.player4" class="flex flex-col py-4">
+      <span class="flex justify-between px-4">
+        <p>Wins</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.wins }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Losses</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.losses }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.kills }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>dBNOs</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.dBNOs }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Headshot Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.headshotKills }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Assists</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.assists }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Damage</p>
+        <p class="font-bold">{{ Math.round(displayPlayer?.p4?.damageDealt) }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Suicides</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.suicides }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Team Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.teamKills }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Most Kills</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.roundMostKills }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Heals</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.heals }}</p>
+      </span>
+
+      <span class="flex justify-between px-4">
+        <p>Revives</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.revives }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Boosts</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.boosts }}</p>
+      </span>
+      <span class="flex justify-between px-4">
+        <p>Total Matches</p>
+        <p class="font-bold">{{ displayPlayer?.p4?.roundsPlayed }}</p>
+      </span>
     </div>
   </article>
 </template>
