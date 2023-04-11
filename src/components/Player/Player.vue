@@ -45,7 +45,7 @@
     </div>
   </article>
   <article class="card-container overflow-hidden">
-    <div class="relative z-50">
+    <div class="relative z-40">
       <div id="playerDropdown1" @click="handlePlayerDropdown(1)" class="player-card p1">
         <figure class="player-card-fig">
           <span class="text-white md-max:hidden">1</span>
@@ -146,7 +146,7 @@
   </article>
 
   <article class="card-container overflow-hidden">
-    <div class="relative z-50">
+    <div class="relative z-40">
       <div id="playerDropdown2" @click="handlePlayerDropdown(2)" class="player-card p2">
         <figure class="player-card-fig">
           <span class="text-white md-max:hidden">2</span>
@@ -247,7 +247,7 @@
   </article>
 
   <article class="card-container overflow-hidden">
-    <div class="relative z-50">
+    <div class="relative z-40">
       <div id="playerDropdown3" @click="handlePlayerDropdown(3)" class="player-card p3">
         <figure class="player-card-fig">
           <span class="text-white md-max:hidden">3</span>
@@ -347,7 +347,7 @@
     </div>
   </article>
   <article class="card-container overflow-hidden">
-    <div class="relative z-50">
+    <div class="relative z-40">
       <div id="playerDropdown4" @click="handlePlayerDropdown(4)" class="player-card p4">
         <figure class="player-card-fig">
           <span class="text-white md-max:hidden">4</span>

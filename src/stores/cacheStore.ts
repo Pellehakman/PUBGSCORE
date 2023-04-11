@@ -7,7 +7,6 @@ export const useCache = defineStore('efid', {
   persist: true,
   actions: {
     letsCache(data: any) {
-      console.log(data)
       if (!JSON.parse(JSON.stringify(this.$state.cacheList)).find((f: any) => f.id === data.id)) {
         this.cacheList.unshift({ ...data })
       }

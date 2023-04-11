@@ -32,7 +32,6 @@ class GetPlayer {
             const data = {
               id: response.data[0].id,
               name: response.data[0].attributes.name,
-              // matches: response.data[0].relationships.matches.data,
               lifetime: [],
               seasons: []
             }
