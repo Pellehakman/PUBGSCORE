@@ -4,7 +4,7 @@
     <div class="border border-stone-300 w-full h-full rounded-sm pt-12">
       <div class="flex gap-16 pl-12">
         <section>
-          <h2 class="heading-bebas-sm mb-4">RESOURCES</h2>
+          <h2 class="heading-bebas-sm mb-4 text-textSecondary">RESOURCES</h2>
           <ul class="flex flex-col gap-2">
             <li class="footer-links">Privacy Policy</li>
             <li class="footer-links">Terms of use</li>
@@ -13,7 +13,7 @@
           </ul>
         </section>
         <section>
-          <h2 class="heading-bebas-sm mb-4">MORE</h2>
+          <h2 class="heading-bebas-sm mb-4 text-textSecondary">MORE</h2>
           <ul class="flex flex-col gap-2">
             <li class="footer-links">Business</li>
             <li class="footer-links">Advertise</li>

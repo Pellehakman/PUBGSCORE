@@ -9,15 +9,15 @@
     </select> -->
 
     <select @change="updateGamemodeOptions" v-model="gamemode" class="option-bar">
-      <option :disabled="gametype === 'ranked'" value="solo-fpp">SOLO</option>
-      <option :disabled="gametype === 'ranked'" value="duo-fpp">DUO</option>
+      <option value="solo-fpp">SOLO</option>
+      <option value="duo-fpp">DUO</option>
       <option value="squad-fpp">SQUAD</option>
-      <option :disabled="gametype === 'ranked'" value="solo">SOLO TPP</option>
-      <option :disabled="gametype === 'ranked'" value="duo">DUO TPP</option>
-      <option :disabled="gametype === 'ranked'" value="squad">SQUAD TPP</option>
+      <option value="solo">SOLO TPP</option>
+      <option value="duo">DUO TPP</option>
+      <option value="squad">SQUAD TPP</option>
     </select>
 
-    <select
+    <!-- <select
       @change="updateGametypeOptions"
       :disabled="isActive"
       v-model="gametype"
@@ -25,7 +25,7 @@
     >
       <option value="normal">NORMAL</option>
       <option value="ranked">RANKED</option>
-    </select>
+    </select> -->
 
     <select @change="updateSeasonOptions" :disabled="isActive" v-model="seasons" class="option-bar">
       <option v-for="f in data.season" :key="f.id" :value="f.id">
@@ -45,7 +45,7 @@
       :class="[
         save ? 'btn--success border-2 border-transparent ' : 'border-2 rounded-sm border-white'
       ]"
-      class="btn btn-default"
+      class="btn btn-default w-1/2 sm-max:border-0 sm-max:w-full"
       value="UPDATE"
     />
   </form>
@@ -61,5 +61,14 @@
   /* tablet */ 
   /* mobile */ sm-max:gap-0 sm-max:my-0 
   /* design */ flex sm-max:flex-col my-2 gap-2;
+}
+
+.NAME {
+  @apply /* --------------------- */
+  /*  full  */ px-16 py-3
+  /* laptop */ lg-max:px-8
+  /* tablet */ md-max:px-2 
+  /* mobile */ sm-max:w-full
+  /* design */;
 }
 </style>

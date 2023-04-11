@@ -14,11 +14,6 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/statistics',
       name: 'statistics',
       component: Statistics
     },

@@ -18,16 +18,12 @@
             </div>
 
             <Router-link to="/" class="menu-item menu-item-size">
-              <span class="menu-heading">HOME</span>
-            </Router-link>
-
-            <Router-link to="/statistics" class="menu-item menu-item-size">
               <span class="menu-heading">STATISTICS</span>
             </Router-link>
 
-            <Router-link to="/teams" class="menu-item menu-item-size">
+            <!-- <Router-link to="/teams" class="menu-item menu-item-size">
               <span class="menu-heading">TEAMS</span>
-            </Router-link>
+            </Router-link> -->
           </div>
         </div>
       </nav>

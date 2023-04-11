@@ -32,8 +32,6 @@ class ActivePlayers {
         await players.setPlayer4(sendData)
         break
     }
-
-
   }
 }
 

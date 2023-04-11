@@ -1,16 +1,10 @@
 import { defineComponent, onMounted, ref } from 'vue'
 import seasonOptions from '@/services/seasons/seasons.json'
 import { useOptions } from '@/stores/options'
-import $activePlayers from '@/services/account/activePlayers'
-import $getPlayers from '@/services/account/getPlayers'
-import $lifetime from '@/services/statistics/lifetime'
-import { usePlayerStore } from '@/stores/playerStore'
-import $seasons from '@/services/seasons/seasons'
 import { $updateHelper } from '@/helpers/UpdateHelper'
 export default defineComponent({
   name: 'OptionBar',
   setup() {
-    const players = usePlayerStore()
     const data = seasonOptions
     const options = useOptions()
     const save = ref(false)
@@ -18,10 +12,6 @@ export default defineComponent({
     onMounted(() => {
       if (options.$state.options.length < 1) {
         handleOptionForm()
-      }
-
-      if (gametype.value === 'ranked') {
-        gamemode.value = 'squad-fpp'
       }
 
       if (alltime.value === 'alltime') {
@@ -44,12 +34,7 @@ export default defineComponent({
       JSON.parse(JSON.stringify(options.$state.options)).gametype || data.gametype[0].id
     )
 
-    const updateGametypeOptions = (event: any) => {
-      save.value = true
-      if (event?.target.value === 'ranked') {
-        gamemode.value = 'squad-fpp'
-      }
-    }
+    
 
     const seasons = ref(
       JSON.parse(JSON.stringify(options.$state.options)).season || data.season[0].id
@@ -82,13 +67,8 @@ export default defineComponent({
         alltime: alltime.value
       }
       await options.storeOptions(data)
-      // if (players.$state.player1.length >= 1) {
-      //   await $lifetime.GetLifetime()
-      //   await $seasons.GetSeasonsStats()
-      // }
       $updateHelper.updateSearch()
-
-      console.log('optionbar run')
+      save.value = false
     }
 
     return {
@@ -102,7 +82,7 @@ export default defineComponent({
       handleOptionForm,
       updateAlltimeOptions,
       updateGamemodeOptions,
-      updateGametypeOptions,
+    
       updateSeasonOptions
     }
   }

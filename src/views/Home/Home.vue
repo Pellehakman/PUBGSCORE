@@ -6,7 +6,7 @@ import type AppFooter from '@/components/AppFooter/AppFooter';
   <!-- <MenuBar /> -->
 
   <div class="mx-auto h-[calc(100vh_-_7rem)]">
-    <div class="flex h-full p-32">
+    <div class="flex h-full p-32 heading-bebas-lg">
       ARE YOU READY TO GO PRO?
       <button @click="reset">X RESET X</button>
       <!-- <Search /> -->

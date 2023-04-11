@@ -3,7 +3,6 @@ import { useCache } from '@/stores/cacheStore'
 import { usePlayerStore } from '@/stores/playerStore'
 import { defineComponent, ref } from 'vue'
 import { useDisplayPlayerStore } from '@/stores/display/displayPlayer1'
-
 import { $updateHelper } from '@/helpers/UpdateHelper'
 
 export default defineComponent({
@@ -11,12 +10,10 @@ export default defineComponent({
   props: { hej: Number },
   async setup() {
     const players = usePlayerStore()
-
     const cache = useCache()
     const displayPlayer = useDisplayPlayerStore()
-
     const playerName = ref()
-    const disp = ref()
+
 
     const playerSearch = ref('')
     const dropdown1 = ref(false)
@@ -25,10 +22,22 @@ export default defineComponent({
     const dropdown4 = ref(false)
 
     document.addEventListener('mousedown', function (event: any) {
-      if (!event.target.closest(`#playerDropdown`)) {
+      if (!event.target.closest(`#playerDropdown1`)) {
         dropdown1.value = false
+      }
+    })
+    document.addEventListener('mousedown', function (event: any) {
+      if (!event.target.closest(`#playerDropdown2`)) {
         dropdown2.value = false
+      }
+    })
+    document.addEventListener('mousedown', function (event: any) {
+      if (!event.target.closest(`#playerDropdown3`)) {
         dropdown3.value = false
+      }
+    })
+    document.addEventListener('mousedown', function (event: any) {
+      if (!event.target.closest(`#playerDropdown4`)) {
         dropdown4.value = false
       }
     })
@@ -90,7 +99,6 @@ export default defineComponent({
       getPlayer3,
       getPlayer4,
       players,
-      disp,
       displayPlayer
     }
   }

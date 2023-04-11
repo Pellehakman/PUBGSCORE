@@ -110,7 +110,6 @@ class DisplayPlayer {
 
     displayPlayers.setDisplayPlayer3(findPlayer3())
 
-    
     const findPlayer4 = async () => {
       if ((await options.$state.options.alltime) === 'alltime') {
         const data = parseJSON(cache.$state.cacheList).find(

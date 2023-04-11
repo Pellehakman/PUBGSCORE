@@ -68,7 +68,7 @@ class Seasons {
           console.log(error)
         })
     }
-    await $displayPlayer.getPlayer()
+    // await $displayPlayer.getPlayer()
   }
 }
 

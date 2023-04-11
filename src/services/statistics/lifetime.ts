@@ -48,7 +48,6 @@ class Lifetime {
         .then((response) => response.json())
         .then(async (response) => {
           if (response.data) {
-            // <-- This is the line you need to add
             for (let i = 0; i < response.data.length; i++) {
               if (response.data[i]) {
                 const data = {
@@ -66,8 +65,6 @@ class Lifetime {
           console.log(error)
         })
 
-      // <--- här slutade du, hämta "num" i getplauer
-      // await $displayPlayer.getPlayer()
       await $seasons.GetSeasonsStats()
     } else {
       return null
