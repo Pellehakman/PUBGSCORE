@@ -7,14 +7,14 @@ import { $updateHelper } from '@/helpers/UpdateHelper'
 
 export default defineComponent({
   name: 'Player',
-  props: { hej: Number },
   async setup() {
     const players = usePlayerStore()
     const cache = useCache()
     const displayPlayer = useDisplayPlayerStore()
     const playerName = ref()
-
-
+    const resetPlayerSearch = () => {
+      playerSearch.value = ''
+    }
     const playerSearch = ref('')
     const dropdown1 = ref(false)
     const dropdown2 = ref(false)
@@ -43,6 +43,7 @@ export default defineComponent({
     })
 
     const handlePlayerDropdown = (index: number) => {
+      resetPlayerSearch()
       if (index === 1) {
         dropdown1.value = !dropdown1.value
       }
@@ -57,35 +58,41 @@ export default defineComponent({
       }
     }
 
-    const loading = ref(false)
+    const loadingP1 = ref(false)
+    const loadingP2 = ref(false)
+    const loadingP3 = ref(false)
+    const loadingP4 = ref(false)
 
     const getPlayer = async () => {
-      loading.value = true
+      loadingP1.value = true
       await $getPlayer.GetPlayer(playerSearch.value, 1)
-      loading.value = false
-      $updateHelper.updateSearch()
+      await $updateHelper.updateSearch()
+      loadingP1.value = false
     }
     const getPlayer2 = async () => {
-      loading.value = true
+      loadingP2.value = true
       await $getPlayer.GetPlayer(playerSearch.value, 2)
-      loading.value = false
-      $updateHelper.updateSearch()
+      await $updateHelper.updateSearch()
+      loadingP2.value = false
     }
     const getPlayer3 = async () => {
-      loading.value = true
+      loadingP3.value = true
       await $getPlayer.GetPlayer(playerSearch.value, 3)
-      loading.value = false
       $updateHelper.updateSearch()
+      loadingP3.value = false
     }
     const getPlayer4 = async () => {
-      loading.value = true
+      loadingP4.value = true
       await $getPlayer.GetPlayer(playerSearch.value, 4)
-      loading.value = false
-      $updateHelper.updateSearch()
+      await $updateHelper.updateSearch()
+      loadingP4.value = false
     }
 
     return {
-      loading,
+      loadingP1,
+      loadingP2,
+      loadingP3,
+      loadingP4,
       cache,
       handlePlayerDropdown,
       dropdown1,

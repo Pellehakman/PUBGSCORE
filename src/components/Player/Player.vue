@@ -5,7 +5,7 @@
     <figure class="h-12 flex justify-center items-center bg-yellow-500 font-bold">
       <span class="text-white text-">STATISTICS</span>
     </figure>
-    <div v-if="players.$state.player2" class="flex w-32 flex-col py-4">
+    <div class="flex w-32 flex-col py-4 relaive">
       <span class="flex justify-between px-4">
         <p class="mobiletype">Wins</p>
       </span>
@@ -51,7 +51,7 @@
           <span class="text-white md-max:hidden">1</span>
         </figure>
         <span class="font-bold text-white text-sm px-2 mr-auto">{{
-          players.$state.player1?.name || 'SEARCH FOR PLAYER'
+          players.$state.player1?.name || 'PLAYER'
         }}</span>
 
         <div class="flex justify-center items-center pr-4 h-full">
@@ -90,7 +90,10 @@
         </div>
       </Transition>
     </div>
-    <div v-if="players.$state.player1" class="flex flex-col py-4">
+    <div v-if="players.$state.player1" class="flex flex-col py-4 relative">
+      <div v-if="loadingP1" class="loading-absolute">
+        <font-awesome-icon class="peer animate-spin icon-sm" icon="fa-solid fa-spinner" />
+      </div>
       <span class="flex justify-between px-4">
         <p class="type">Wins</p>
         <p class="font-bold">{{ displayPlayer?.p1?.wins }}</p>
@@ -149,7 +152,7 @@
           <span class="text-white md-max:hidden">2</span>
         </figure>
         <span class="font-bold text-white text-sm px-2 mr-auto">{{
-          players.$state.player2?.name || 'SEARCH FOR PLAYER'
+          players.$state.player2?.name || 'PLAYER'
         }}</span>
 
         <div class="flex justify-center items-center pr-4 h-full">
@@ -188,7 +191,10 @@
         </div>
       </Transition>
     </div>
-    <div v-if="players.$state.player2" class="flex flex-col py-4">
+    <div v-if="players.$state.player2" class="flex flex-col py-4 relative">
+      <div v-if="loadingP2" class="loading-absolute">
+        <font-awesome-icon class="peer animate-spin icon-sm" icon="fa-solid fa-spinner" />
+      </div>
       <span class="flex justify-between px-4">
         <p class="type">Wins</p>
         <p class="font-bold">{{ displayPlayer?.p2?.wins }}</p>
@@ -247,7 +253,7 @@
           <span class="text-white md-max:hidden">3</span>
         </figure>
         <span class="font-bold text-white text-sm px-2 mr-auto">{{
-          players.$state.player3?.name || 'SEARCH FOR PLAYER'
+          players.$state.player3?.name || 'PLAYER'
         }}</span>
 
         <div class="flex justify-center items-center pr-4 h-full">
@@ -286,7 +292,10 @@
         </div>
       </Transition>
     </div>
-    <div v-if="players.$state.player3" class="flex flex-col py-4">
+    <div v-if="players.$state.player3" class="flex flex-col py-4 relative">
+      <div v-if="loadingP3" class="loading-absolute">
+        <font-awesome-icon class="peer animate-spin icon-sm" icon="fa-solid fa-spinner" />
+      </div>
       <span class="flex justify-between px-4">
         <p class="type">Wins</p>
         <p class="font-bold">{{ displayPlayer?.p3?.wins }}</p>
@@ -344,7 +353,7 @@
           <span class="text-white md-max:hidden">4</span>
         </figure>
         <span class="font-bold text-white text-sm px-2 mr-auto">{{
-          players.$state.player4?.name || 'SEARCH FOR PLAYER'
+          players.$state.player4?.name || 'PLAYER'
         }}</span>
 
         <div class="flex justify-center items-center pr-4 h-full">
@@ -383,7 +392,10 @@
         </div>
       </Transition>
     </div>
-    <div v-if="players.$state.player4" class="flex flex-col py-4">
+    <div v-if="players.$state.player4" class="flex flex-col py-4 relative">
+      <div v-if="loadingP4" class="loading-absolute">
+        <font-awesome-icon class="peer animate-spin icon-sm" icon="fa-solid fa-spinner" />
+      </div>
       <span class="flex justify-between px-4">
         <p class="type">Wins</p>
         <p class="font-bold">{{ displayPlayer?.p4?.wins }}</p>
@@ -463,6 +475,9 @@
 }
 .mobiletype {
   @apply inline;
+}
+.loading-absolute {
+  @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
 }
 
 .amount {

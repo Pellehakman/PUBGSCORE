@@ -5,6 +5,7 @@ import { usePlayerStore } from '@/stores/playerStore'
 import $player1 from '../players/displayPlayer'
 import $displayPlayer from '../players/displayPlayer'
 import $seasons from '../seasons/seasons'
+import { $parseHelper } from '@/helpers/ParseHelper'
 const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 
 class Lifetime {
@@ -31,43 +32,61 @@ class Lifetime {
       return ids
     }
     const idsFromFunction = getIdsFromActive()
+    console.log('ids', JSON.stringify(idsFromFunction))
+    console.log('cachelist', JSON.parse(JSON.stringify(cache.$state.cacheList)))
 
-    const playersString = Object.values([idsFromFunction]).join(',')
-    if (playersString.length > 0) {
-      const lifetime_url = `seasons/lifetime/gameMode/${
-        parseJSON(options.$state.options.gamemode) || data.gamemode[0].id
-      }/players?filter[playerIds]=${playersString}`
+    const fetchFunc = async () => {
+      const playersString = Object.values([idsFromFunction]).join(',')
+      if (playersString.length > 0) {
+        const lifetime_url = `seasons/lifetime/gameMode/${
+          parseJSON(options.$state.options.gamemode) || data.gamemode[0].id
+        }/players?filter[playerIds]=${playersString}`
 
-      await fetch(`${import.meta.env.VITE_API_URL}${lifetime_url}`, {
-        method: 'GET',
-        headers: {
-          authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
-          Accept: 'application/vnd.api+json'
-        }
-      })
-        .then((response) => response.json())
-        .then(async (response) => {
-          if (response.data) {
-            for (let i = 0; i < response.data.length; i++) {
-              if (response.data[i]) {
-                const data = {
-                  id: response.data[i].relationships.player.data.id,
-                  gamemode: JSON.parse(JSON.stringify(options.$state.options)).gamemode,
-                  gameModeStats: response.data[i].attributes.gameModeStats
-                }
-
-                cache.letsCacheLifetime({ ...data })
-              }
-            }
+        console.log('NO PLAYER, LETS ADD')
+        await fetch(`${import.meta.env.VITE_API_URL}${lifetime_url}`, {
+          method: 'GET',
+          headers: {
+            authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
+            Accept: 'application/vnd.api+json'
           }
         })
-        .then((error) => {
-          console.log(error)
-        })
+          .then((response) => response.json())
+          .then(async (response) => {
+            if (response.data) {
+              for (let i = 0; i < response.data.length; i++) {
+                if (response.data[i]) {
+                  const data = {
+                    id: response.data[i].relationships.player.data.id,
+                    gamemode: JSON.parse(JSON.stringify(options.$state.options)).gamemode,
+                    gameModeStats: response.data[i].attributes.gameModeStats
+                  }
 
-      await $seasons.GetSeasonsStats()
-    } else {
-      return null
+                  cache.letsCacheLifetime({ ...data })
+                }
+              }
+            }
+          })
+          .then((error) => {
+            // console.log(error)
+          })
+      } else {
+        return null
+      }
+    }
+
+    for (let i = 0; i < idsFromFunction.length; i++) {
+      if (cache.$state.cacheList.filter((acc) => acc.id === idsFromFunction[i]).length > 0) {
+        if (
+          cache.$state.cacheList
+            .find((f: any) => f.id === idsFromFunction[i])
+            .lifetime.find((g: any) => g.gamemode === options.$state.options.gamemode)
+        ) {
+          await $seasons.GetSeasonsStats()
+        } else {
+          await fetchFunc()
+          await $seasons.GetSeasonsStats()
+        }
+      }
     }
   }
 }
