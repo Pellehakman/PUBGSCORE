@@ -32,8 +32,6 @@ class Lifetime {
       return ids
     }
     const idsFromFunction = getIdsFromActive()
-    console.log('ids', JSON.stringify(idsFromFunction))
-    console.log('cachelist', JSON.parse(JSON.stringify(cache.$state.cacheList)))
 
     const fetchFunc = async () => {
       const playersString = Object.values([idsFromFunction]).join(',')
