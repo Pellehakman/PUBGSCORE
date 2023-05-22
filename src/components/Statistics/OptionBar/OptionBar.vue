@@ -2,12 +2,6 @@
 
 <template>
   <form class="option-bar-container">
-    <!-- <select @change="needSave" v-model="optionForm.gamemode" class="option-bar">
-      <option v-for="f in data.gamemode" :key="f.id" :value="f.id">
-        {{ f.gamemode }}
-      </option>
-    </select> -->
-
     <select @change="updateGamemodeOptions" v-model="gamemode" class="option-bar">
       <option value="solo-fpp">SOLO</option>
       <option value="duo-fpp">DUO</option>
@@ -16,16 +10,6 @@
       <option value="duo">DUO TPP</option>
       <option value="squad">SQUAD TPP</option>
     </select>
-
-    <!-- <select
-      @change="updateGametypeOptions"
-      :disabled="isActive"
-      v-model="gametype"
-      class="option-bar"
-    >
-      <option value="normal">NORMAL</option>
-      <option value="ranked">RANKED</option>
-    </select> -->
 
     <select @change="updateSeasonOptions" :disabled="isActive" v-model="seasons" class="option-bar">
       <option v-for="f in data.season" :key="f.id" :value="f.id">

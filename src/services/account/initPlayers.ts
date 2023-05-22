@@ -1,7 +1,4 @@
-import { useCache } from '@/stores/cacheStore'
 import { usePlayerStore } from '@/stores/playerStore'
-import $lifetime from '../statistics/lifetime'
-const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
 
 class InitPlayers {
   async setInit(lastPlayedWith: any) {

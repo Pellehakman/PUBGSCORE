@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
-const parseJSON = (data: any) => JSON.parse(JSON.stringify(data))
-export const useCache = defineStore('efid', {
+export const useCache = defineStore('pbgid', {
   state: () => ({
     cacheList: [] as Array<any>
   }),

@@ -12,7 +12,7 @@ class DisplayPlayer {
     const options = useOptions()
 
     function calcLife(data: any) {
-      console.log('life 2')
+      // console.log('life 2')
       return data.lifetime.find((f: any) => f.gamemode === options.$state.options.gamemode)
     }
 
@@ -35,7 +35,7 @@ class DisplayPlayer {
         if (data !== undefined) {
           return await calcLife(data)
         } else {
-          console.log('No data found for player 1!')
+          // console.log('No data found for player 1!')
           return null
         }
       } else if (options.$state.options.alltime === 'season') {
@@ -46,7 +46,7 @@ class DisplayPlayer {
         if (data !== undefined) {
           return await calcSeason(data)
         } else {
-          console.log('No data found for player 1!')
+          // console.log('No data found for player 1!')
           return null
         }
       }
@@ -63,7 +63,7 @@ class DisplayPlayer {
         if (data !== undefined) {
           return await calcLife(data)
         } else {
-          console.log('No data found for player 2!')
+          // console.log('No data found for player 2!')
           return null
         }
       } else if (options.$state.options.alltime === 'season') {
@@ -74,7 +74,7 @@ class DisplayPlayer {
         if (data !== undefined) {
           return await calcSeason(data)
         } else {
-          console.log('No data found for player 2!')
+          // console.log('No data found for player 2!')
           return null
         }
       }
@@ -91,7 +91,7 @@ class DisplayPlayer {
         if (data !== undefined) {
           return await calcLife(data)
         } else {
-          console.log('No data found for player 3!')
+          // console.log('No data found for player 3!')
           return null
         }
       } else if (options.$state.options.alltime === 'season') {
@@ -102,7 +102,7 @@ class DisplayPlayer {
         if (data !== undefined) {
           return await calcSeason(data)
         } else {
-          console.log('No data found for player 3!')
+          // console.log('No data found for player 3!')
           return null
         }
       }
@@ -119,7 +119,7 @@ class DisplayPlayer {
         if (data !== undefined) {
           return await calcLife(data)
         } else {
-          console.log('No data found for player 4!')
+          // console.log('No data found for player 4!')
           return null
         }
       } else if (options.$state.options.alltime === 'season') {
@@ -130,7 +130,7 @@ class DisplayPlayer {
         if (data !== undefined) {
           return await calcSeason(data)
         } else {
-          console.log('No data found for player 4!')
+          // console.log('No data found for player 4!')
           return null
         }
       }

@@ -18,10 +18,10 @@ export default defineComponent({
   },
 
   setup() {
-    const cache = useCache()
-    const players = usePlayerStore()
-    console.log(JSON.parse(JSON.stringify(cache.$state.cacheList)))
-    console.log(JSON.parse(JSON.stringify(players.$state)))
+    // const cache = useCache()
+    // const players = usePlayerStore()
+    // console.log(JSON.parse(JSON.stringify(cache.$state.cacheList)))
+    // console.log(JSON.parse(JSON.stringify(players.$state)))
 
     return {}
   }

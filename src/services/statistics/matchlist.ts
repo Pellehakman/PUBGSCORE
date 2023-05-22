@@ -14,7 +14,7 @@ class Matchlist {
     })
       .then((response) => response.json())
       .then(async (response) => {
-        console.log(response)
+        // console.log(response)
       })
   }
 }

@@ -34,8 +34,6 @@ export default defineComponent({
       JSON.parse(JSON.stringify(options.$state.options)).gametype || data.gametype[0].id
     )
 
-    
-
     const seasons = ref(
       JSON.parse(JSON.stringify(options.$state.options)).season || data.season[0].id
     )
@@ -82,7 +80,6 @@ export default defineComponent({
       handleOptionForm,
       updateAlltimeOptions,
       updateGamemodeOptions,
-    
       updateSeasonOptions
     }
   }
